@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "195581668701",
+    "firebase_url": "https://applistadechamada.firebaseio.com",
+    "project_id": "applistadechamada",
+    "storage_bucket": "applistadechamada.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195581668701:android:c5efb460e84613c3",
+        "android_client_info": {
+          "package_name": "com.example.matheus.listadechamadas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195581668701-suueomtdb8updqpukp77p61ildnnjlr4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.matheus.listadechamadas",
+            "certificate_hash": "ac9ff66bb4478a28ede44d69a5a7979455852b7a"
+          }
+        },
+        {
+          "client_id": "195581668701-654a1ioqgqt4u8geb6lp159d10efj8bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA72TeE7IEBYh7l0FH7JLeZeMTabq_d51k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195581668701-654a1ioqgqt4u8geb6lp159d10efj8bv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195581668701:android:e3243e77cf3206b0",
+        "android_client_info": {
+          "package_name": "com.example.matheus.projetolistachamada"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195581668701-egp9dl1etrul2id9s7hhaj2865n2gu33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.matheus.projetolistachamada",
+            "certificate_hash": "ac9ff66bb4478a28ede44d69a5a7979455852b7a"
+          }
+        },
+        {
+          "client_id": "195581668701-654a1ioqgqt4u8geb6lp159d10efj8bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA72TeE7IEBYh7l0FH7JLeZeMTabq_d51k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195581668701-654a1ioqgqt4u8geb6lp159d10efj8bv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
