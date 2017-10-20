@@ -40,6 +40,8 @@ public class Loginctivity extends AppCompatActivity {
         });
     }
 
+    private void validarLogin(){
 
+    }
 
 }

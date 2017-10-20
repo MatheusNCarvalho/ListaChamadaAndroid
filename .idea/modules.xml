@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ProjetoListaChamada.iml" filepath="$PROJECT_DIR$/ProjetoListaChamada.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ListaChamadaAndroid.iml" filepath="$PROJECT_DIR$/ListaChamadaAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
