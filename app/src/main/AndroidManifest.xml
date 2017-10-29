@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Loginctivity" />
-        <activity android:name=".Activity.PrincipalActivity"></activity>
+        <activity android:name=".Activity.PrincipalActivity" />
+        <activity android:name=".Activity.CadastroAlunosActivity"></activity>
     </application>
 
 </manifest>

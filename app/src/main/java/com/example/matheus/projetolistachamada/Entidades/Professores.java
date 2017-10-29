@@ -6,14 +6,14 @@ import java.util.Date;
  * Created by Brunno on 29/10/17.
  */
 
-public class Alunos {
+public class Professores {
 
     private String id;
     private String nome;
-    private Date dataMatricula;
     private String matricula;
+    private Date dataMatricula;
 
-    private Turmas turma;
+    private Turmas turmas;
 
     public String getId() {
         return id;
@@ -31,14 +31,6 @@ public class Alunos {
         this.nome = nome;
     }
 
-    public Date getDataMatricula() {
-        return dataMatricula;
-    }
-
-    public void setDataMatricula(Date dataMatricula) {
-        this.dataMatricula = dataMatricula;
-    }
-
     public String getMatricula() {
         return matricula;
     }
@@ -47,11 +39,19 @@ public class Alunos {
         this.matricula = matricula;
     }
 
-    public Turmas getTurma() {
-        return turma;
+    public Date getDataMatricula() {
+        return dataMatricula;
     }
 
-    public void setTurma(Turmas turma) {
-        this.turma = turma;
+    public void setDataMatricula(Date dataMatricula) {
+        this.dataMatricula = dataMatricula;
+    }
+
+    public Turmas getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(Turmas turmas) {
+        this.turmas = turmas;
     }
 }
