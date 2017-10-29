@@ -8,20 +8,23 @@ import android.widget.Button;
 
 import com.example.matheus.projetolistachamada.R;
 
-public class PrincipalActivity extends AppCompatActivity {
+public class CadastrosActivity extends AppCompatActivity {
 
-    private Button btCadastros;
+    private Button btCadastroUsuario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_principal);
-        btCadastros = (Button) findViewById(R.id.btCadastros);
-        btCadastros.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_cadastros);
+
+        btCadastroUsuario = (Button) findViewById(R.id.btCadastroUsuario);
+        btCadastroUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(PrincipalActivity.this, CadastrosActivity.class);
+                Intent it = new Intent(CadastrosActivity.this, CadastroAlunosActivity.class);
                 startActivity(it);
             }
         });
+
     }
 }
