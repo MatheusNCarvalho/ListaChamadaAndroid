@@ -30,17 +30,21 @@ public class CadastroAlunosActivity extends AppCompatActivity {
 
         etCadNome = (EditText) findViewById(R.id.etNomeAluno);
         etCadMatricula = (EditText) findViewById(R.id.etMatriculaAluno);
-        btSalvar = (Button) findViewById(R.id.btSalvarCadUsuario);
+        btSalvar = (Button) findViewById(R.id.btSalvarCadAlunos);
 
         btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!etCadNome.getText().toString().equals("") && !etCadMatricula.getText().toString().equals("")){
+                    alunos = new Alunos();
 
                     alunos.setNome(etCadNome.getText().toString());
                     alunos.setMatricula(Integer.valueOf(etCadMatricula.getText().toString()));
 
                     salvarAluno(alunos);
+                    Toast.makeText(CadastroAlunosActivity.this, "Aluno salvo com sucesso!", Toast.LENGTH_LONG).show();
+                    etCadNome.setText("");
+                    etCadMatricula.setText("");
                 }else{
                     Toast.makeText(CadastroAlunosActivity.this, "Preencha os campos corretamente!", Toast.LENGTH_LONG).show();
                 }

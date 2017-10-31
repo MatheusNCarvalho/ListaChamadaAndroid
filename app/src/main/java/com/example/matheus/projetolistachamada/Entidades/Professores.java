@@ -10,7 +10,7 @@ public class Professores {
 
     private String id;
     private String nome;
-    private String matricula;
+    private Integer matricula;
     private Date dataMatricula;
 
     private Turmas turmas;
@@ -31,11 +31,11 @@ public class Professores {
         this.nome = nome;
     }
 
-    public String getMatricula() {
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 

@@ -10,6 +10,9 @@ import com.example.matheus.projetolistachamada.R;
 
 public class CadastrosActivity extends AppCompatActivity {
 
+    private Button btCadastroAluno;
+    private Button btCadastroProfessor;
+    private Button btCadastroTurma;
     private Button btCadastroUsuario;
 
     @Override
@@ -17,11 +20,38 @@ public class CadastrosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastros);
 
+        btCadastroAluno = (Button) findViewById(R.id.btCadastroAluno);
+        btCadastroAluno.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(CadastrosActivity.this, CadastroAlunosActivity.class);
+                startActivity(it);
+            }
+        });
+
+        btCadastroProfessor = (Button) findViewById(R.id.btCadastroProfessor);
+        btCadastroProfessor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(CadastrosActivity.this, CadastroProfessoresActivity.class);
+                startActivity(it);
+            }
+        });
+
+        btCadastroTurma = (Button) findViewById(R.id.btCadastroTurma);
+        btCadastroTurma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent();
+                startActivity(it);
+            }
+        });
+
         btCadastroUsuario = (Button) findViewById(R.id.btCadastroUsuario);
         btCadastroUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(CadastrosActivity.this, CadastroAlunosActivity.class);
+                Intent it = new Intent();
                 startActivity(it);
             }
         });

@@ -24,7 +24,9 @@
         <activity android:name=".Activity.Loginctivity" />
         <activity android:name=".Activity.PrincipalActivity" />
         <activity android:name=".Activity.CadastroAlunosActivity" />
-        <activity android:name=".Activity.CadastrosActivity"></activity>
+        <activity android:name=".Activity.CadastrosActivity" />
+        <activity android:name=".Activity.CadastroProfessoresActivity" />
+        <activity android:name=".Activity.AlunosActivity"></activity>
     </application>
 
 </manifest>

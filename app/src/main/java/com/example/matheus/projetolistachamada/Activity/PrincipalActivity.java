@@ -11,6 +11,8 @@ import com.example.matheus.projetolistachamada.R;
 public class PrincipalActivity extends AppCompatActivity {
 
     private Button btCadastros;
+    private Button btAlunos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,5 +25,15 @@ public class PrincipalActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+
+        btAlunos = (Button) findViewById(R.id.btlistaAlunos);
+        btAlunos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(PrincipalActivity.this, AlunosActivity.class);
+                startActivity(it);
+            }
+        });
+
     }
 }

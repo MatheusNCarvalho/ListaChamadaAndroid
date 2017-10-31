@@ -22,11 +22,35 @@
             android:textAlignment="center" />
 
         <Button
-            android:id="@+id/btCadastroUsuario"
+            android:id="@+id/btCadastroAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView4"
             android:text="Cadastro de alunos" />
+
+        <Button
+            android:id="@+id/btCadastroProfessor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btCadastroAluno"
+            android:text="Cadastro de professores" />
+
+        <Button
+            android:id="@+id/btCadastroTurma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btCadastroProfessor"
+            android:text="Cadastro de turmas" />
+
+        <Button
+            android:id="@+id/btCadastroUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btCadastroTurma"
+            android:text="Cadastro de usuários" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
