@@ -42,7 +42,7 @@ public class CadastrosActivity extends AppCompatActivity {
         btCadastroTurma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent();
+                Intent it = new Intent(CadastrosActivity.this, CadastroTurmasActivity.class);
                 startActivity(it);
             }
         });

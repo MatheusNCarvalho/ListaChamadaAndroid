@@ -26,7 +26,9 @@
         <activity android:name=".Activity.CadastroAlunosActivity" />
         <activity android:name=".Activity.CadastrosActivity" />
         <activity android:name=".Activity.CadastroProfessoresActivity" />
-        <activity android:name=".Activity.AlunosActivity"></activity>
+        <activity android:name=".Activity.AlunosActivity" />
+        <activity android:name=".Activity.ProfessoresActivity" />
+        <activity android:name=".Activity.CadastroTurmasActivity"></activity>
     </application>
 
 </manifest>

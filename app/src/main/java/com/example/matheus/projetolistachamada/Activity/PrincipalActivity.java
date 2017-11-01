@@ -12,7 +12,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     private Button btCadastros;
     private Button btAlunos;
-
+    private Button btProfessores;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,14 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent it = new Intent(PrincipalActivity.this, AlunosActivity.class);
+                startActivity(it);
+            }
+        });
+        btProfessores = (Button) findViewById(R.id.btListaProfessores);
+        btProfessores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it  = new Intent(PrincipalActivity.this, ProfessoresActivity.class);
                 startActivity(it);
             }
         });

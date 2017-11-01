@@ -57,7 +57,7 @@ public class CadastroAlunosActivity extends AppCompatActivity {
         try{
             firebase = ConfiguracaoFirebase.getFirebase().child("addalunos");
             firebase.child(alunos.getNome()).setValue(alunos);
-            Toast.makeText(CadastroAlunosActivity.this, " Aluno inserido com sucesso!", Toast.LENGTH_LONG).show();
+
             return true;
         }catch (Exception e){
             e.printStackTrace();
