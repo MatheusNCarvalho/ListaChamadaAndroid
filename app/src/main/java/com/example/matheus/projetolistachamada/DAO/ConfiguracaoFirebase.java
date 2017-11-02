@@ -13,10 +13,14 @@ public class ConfiguracaoFirebase {
     private static FirebaseAuth autenticacao;
 
 
+
     public static DatabaseReference getFirebase(){
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         if(referenceFirebase == null){
+
             referenceFirebase = FirebaseDatabase.getInstance().getReference();
+
         }
 
         return referenceFirebase;

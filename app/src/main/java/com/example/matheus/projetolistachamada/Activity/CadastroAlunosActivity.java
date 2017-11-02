@@ -13,6 +13,8 @@ import com.example.matheus.projetolistachamada.Entidades.Alunos;
 import com.example.matheus.projetolistachamada.R;
 import com.google.firebase.database.DatabaseReference;
 
+import com.example.matheus.projetolistachamada.R;
+
 public class CadastroAlunosActivity extends AppCompatActivity {
 
     private EditText etCadNome;
