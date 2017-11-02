@@ -2,7 +2,6 @@ package com.example.matheus.projetolistachamada.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,20 +10,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import com.example.matheus.projetolistachamada.R;
 
-public class MainActivity extends AppCompatActivity   implements NavigationView.OnNavigationItemSelectedListener {
-
-    private Button btnAbrirActivityLogin;
+public class MenuLateralActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_menu_lateral);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -35,22 +34,6 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-
-        btnAbrirActivityLogin = (Button) findViewById(R.id.btnFazerLogin);
-
-        btnAbrirActivityLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentAbrirTelaLogin = new Intent(MainActivity.this, Loginctivity.class);
-
-                startActivity(intentAbrirTelaLogin);
-
-            }
-        });
-
     }
 
     @Override
@@ -66,7 +49,7 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_lateral, menu);
         return true;
     }
 
@@ -88,14 +71,13 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
+        // Handle navigation view item clicks here.
         switch (item.getItemId()){
-            case R.id.nav_aluno:
-                Intent it = new Intent(MainActivity.this, AlunosActivity.class);
+            case R.id.nav_alunos:
+                Intent it = new Intent(MenuLateralActivity.this, AlunosActivity.class);
                 startActivity(it);
                 break;
         }
-//        // Handle navigation view item clicks here.
 //        int id = item.getItemId();
 //
 //        if (id == R.id.nav_camera) {
