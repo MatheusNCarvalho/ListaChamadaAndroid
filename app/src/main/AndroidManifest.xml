@@ -28,6 +28,8 @@
         <activity android:name=".Activity.AlunosActivity" />
         <activity android:name=".Activity.ProfessoresActivity" />
         <activity android:name=".Activity.CadastroTurmasActivity" />
+        <activity android:name=".Activity.TurmasActivity"></activity>
+        <activity android:name=".Activity.CadastroTurmasActivity" />
         <activity
             android:name=".Activity.MenuLateralActivity"
             android:label="@string/title_activity_menu_lateral"
