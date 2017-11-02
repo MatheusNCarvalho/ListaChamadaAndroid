@@ -1,5 +1,12 @@
 package com.example.matheus.projetolistachamada.Entidades;
 
+import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Matheus on 20/10/2017.
  */
@@ -13,7 +20,22 @@ public class Usuarios {
     private String aniversario;
     private String sexo;
 
+    public void salvar(){
+        DatabaseReference referenciaFirebase = ConfiguracaoFirebase.getFirebase();
+        referenciaFirebase.child("usuario").child(String.valueOf(getId())).setValue(this);
+    }
 
+    @Exclude
+
+    public Map<String, Object> toMap(){
+        HashMap<String, Object> hashMapUsuario = new HashMap<>();
+        hashMapUsuario.put("id",getId());
+        hashMapUsuario.put("nome",getNome());
+        hashMapUsuario.put("email",getEmail());
+        hashMapUsuario.put("senha",getSenha());
+
+        return hashMapUsuario;
+    }
 
 
     public String getId() {
