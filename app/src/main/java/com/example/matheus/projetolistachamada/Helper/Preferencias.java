@@ -20,6 +20,8 @@ public class Preferencias {
     public Preferencias(Context context) {
         this.context = context;
         preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
+        editor = preferences.edit();
+
     }
     public void salvarUsuarioPreferencias(String identificadorUsuario, String nomeUsuario){
         editor.putString(CHAVE_IDENTIFICADOR, identificadorUsuario);
@@ -27,10 +29,8 @@ public class Preferencias {
         editor.commit();
 
     }
-    public String getIdentificador(){
-        return preferences.getString(CHAVE_IDENTIFICADOR, null);
+    public String getIdentificador(){ return preferences.getString(CHAVE_IDENTIFICADOR, null); }
 
-    }
     public String getNome(){
         return preferences.getString(CHAVE_NOME,null );
     }

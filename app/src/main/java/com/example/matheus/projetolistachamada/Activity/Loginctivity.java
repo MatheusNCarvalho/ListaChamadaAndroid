@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
@@ -26,6 +27,8 @@ public class Loginctivity extends AppCompatActivity {
     private Button btnLogar;
     private FirebaseAuth autenticacao;
     private Usuarios usuarios;
+
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,15 @@ public class Loginctivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(Loginctivity.this, "Preencha os campos de email e senha", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        textView = (TextView) findViewById(R.id.cliqueCadastro);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(Loginctivity.this, CadastroUsuariosActivity.class);
+                startActivity(it);
             }
         });
     }

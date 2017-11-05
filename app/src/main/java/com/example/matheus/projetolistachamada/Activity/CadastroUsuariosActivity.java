@@ -52,9 +52,9 @@ public class CadastroUsuariosActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(!etNome.getText().toString().equals("")&&
-                        etEmail.getText().toString().equals("") &&
-                            etSenha.getText().toString().equals("") &&
-                                etConfirmaSenha.getText().toString().equals("")){
+                        !etEmail.getText().toString().equals("") &&
+                            !etSenha.getText().toString().equals("") &&
+                                !etConfirmaSenha.getText().toString().equals("")){
                     if(etSenha.getText().toString().equals(etConfirmaSenha.getText().toString())){
                         usuarios = new Usuarios();
                         usuarios.setNome(etNome.getText().toString());
@@ -62,11 +62,6 @@ public class CadastroUsuariosActivity extends AppCompatActivity {
                         usuarios.setSenha(etSenha.getText().toString());
 
                         salvarUsuario();
-
-                        etNome.setText("");
-                        etEmail.setText("");
-                        etSenha.setText("");
-                        etConfirmaSenha.setText("");
                     }
                     else{
                         Toast.makeText(CadastroUsuariosActivity.this, "As senhas não conferem", Toast.LENGTH_LONG).show();
@@ -96,7 +91,13 @@ public class CadastroUsuariosActivity extends AppCompatActivity {
 
                     Toast.makeText(CadastroUsuariosActivity.this, "Usuário cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 
+                    etNome.setText("");
+                    etEmail.setText("");
+                    etSenha.setText("");
+                    etConfirmaSenha.setText("");
+
                     abrirLoginUsuario();
+
                 }else{
                     String erroExcecao = "";
                     try{
@@ -111,11 +112,13 @@ public class CadastroUsuariosActivity extends AppCompatActivity {
                         erroExcecao = "Falha ao efetuar o cadastro.";
                         e.printStackTrace();
                     }
-                    Toast.makeText(CadastroUsuariosActivity.this, "Erro: "+ erroExcecao, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CadastroUsuariosActivity.this, "" + erroExcecao, Toast.LENGTH_SHORT).show();
                 }
+
            }
 
        });
+
     }
     public void abrirLoginUsuario(){
         Intent it = new Intent(CadastroUsuariosActivity.this, Loginctivity.class);
