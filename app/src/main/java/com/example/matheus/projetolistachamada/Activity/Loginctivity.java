@@ -18,8 +18,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 
 public class Loginctivity extends AppCompatActivity {
+
 
 
     private EditText edtEmail;
@@ -35,39 +38,48 @@ public class Loginctivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginctivity);
 
-        edtEmail = (EditText) findViewById(R.id.edtEmail);
-        edtSenha = (EditText) findViewById(R.id.edtSenha);
-        btnLogar = (Button) findViewById(R.id.btnLogar);
+        autenticacao = ConfiguracaoFirebase.getAutenticacao();
 
+        if(autenticacao.getCurrentUser() != null){
+            abrirTelaPrincipal();
+            finish();
+        }
 
-        btnLogar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!edtEmail.getText().toString().isEmpty() && !edtSenha.getText().toString().isEmpty() ){
+            edtEmail = (EditText) findViewById(R.id.edtEmail);
+            edtSenha = (EditText) findViewById(R.id.edtSenha);
+            btnLogar = (Button) findViewById(R.id.btnLogar);
 
-                    usuarios = new Usuarios();
-                    usuarios.setEmail(edtEmail.getText().toString());
-                    usuarios.setSenha(edtSenha.getText().toString());
-                    validarLogin();
+            btnLogar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!edtEmail.getText().toString().isEmpty() && !edtSenha.getText().toString().isEmpty()) {
 
-                }else{
-                    Toast.makeText(Loginctivity.this, "Preencha os campos de email e senha", Toast.LENGTH_LONG).show();
+                        usuarios = new Usuarios();
+                        usuarios.setEmail(edtEmail.getText().toString());
+                        usuarios.setSenha(edtSenha.getText().toString());
+                        validarLogin();
+
+                    } else {
+                        Toast.makeText(Loginctivity.this, "Preencha os campos de email e senha", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
+            });
 
-        textView = (TextView) findViewById(R.id.cliqueCadastro);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(Loginctivity.this, CadastroUsuariosActivity.class);
-                startActivity(it);
-            }
-        });
+            textView = (TextView) findViewById(R.id.cliqueCadastro);
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent it = new Intent(Loginctivity.this, CadastroUsuariosActivity.class);
+                    startActivity(it);
+                }
+            });
+
     }
+
 
     private void validarLogin(){
         try{
+
 
             autenticacao = ConfiguracaoFirebase.getAutenticacao();
             autenticacao.signInWithEmailAndPassword(usuarios.getEmail(), usuarios.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -87,7 +99,23 @@ public class Loginctivity extends AppCompatActivity {
     }
 
     private void abrirTelaPrincipal(){
-        Intent intentAbrirTelaPrincipal =  new Intent(Loginctivity.this, MenuLateralMaterial.class);
+        Intent intentAbrirTelaPrincipal =  new Intent(Loginctivity.this, CadastrosActivity.class);
         startActivity(intentAbrirTelaPrincipal);
     }
+
+
+    private void pegartokenUsuario(){
+        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
+        usuario.getToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+            @Override
+            public void onComplete(@NonNull Task<GetTokenResult> task) {
+                if(task.isSuccessful()){
+                    String tokenId = task.getResult().getToken();
+
+                }
+
+            }
+        });
+    }
+
 }

@@ -81,7 +81,7 @@ public class CadastroUsuariosActivity extends AppCompatActivity {
            @Override
            public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    String identificadorUsuario = Base64Custom.codificarBase64(usuarios.getEmail());
+                    String identificadorUsuario = Base64Custom.codificarBase64(usuarios.getId());
                     FirebaseUser usuarioFirebase = task.getResult().getUser();
                     usuarios.setId(identificadorUsuario);
                     usuarios.salvar();

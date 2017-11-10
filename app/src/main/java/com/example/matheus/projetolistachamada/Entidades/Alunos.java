@@ -12,8 +12,7 @@ public class Alunos {
     private String nome;
     private Date dataMatricula;
     private Integer matricula;
-
-    private Turmas turma;
+    private String turma;
 
     public String getId() {
         return id;
@@ -47,11 +46,9 @@ public class Alunos {
         this.matricula = matricula;
     }
 
-    public Turmas getTurma() {
-        return turma;
-    }
+    public String getTurma() { return turma; }
 
-    public void setTurma(Turmas turma) {
+    public void setTurma(String turma) {
         this.turma = turma;
     }
 }

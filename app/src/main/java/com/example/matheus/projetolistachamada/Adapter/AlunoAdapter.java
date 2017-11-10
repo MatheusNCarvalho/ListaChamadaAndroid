@@ -37,10 +37,12 @@ public class AlunoAdapter extends ArrayAdapter<Alunos>{
             view = inflater.inflate(R.layout.lista_alunos, parent , false);
             TextView tvNome = (TextView) view.findViewById(R.id.tvNome);
             TextView tvMatricula = (TextView) view.findViewById(R.id.tvMatricula);
+            TextView tvTurma = (TextView) view.findViewById(R.id.tvTurma);
 
             Alunos alunos2 = aluno.get(position);
             tvNome.setText(alunos2.getNome());
             tvMatricula.setText(alunos2.getMatricula().toString());
+            tvTurma.setText(alunos2.getTurma().toString());
         }
 
         return view;
