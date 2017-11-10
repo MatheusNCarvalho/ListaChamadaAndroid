@@ -54,8 +54,10 @@ public class MenuLateralMaterial extends AppCompatActivity {
 
                              switch (position){
                                  case 2:
-                                     Intent it = new Intent(MenuLateralMaterial.this, AlunosActivity.class);
-                                     startActivity(it);
+
+                                     //Intent it = new Intent(MenuLateralMaterial.this, AlunosActivity.class);
+                                     //startActivity(it);
+
                                      break;
                              }
 

@@ -52,5 +52,15 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/btCadastroTurma"
             android:text="Cadastro de usuários" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btCadastroUsuario"
+            android:layout_marginStart="123dp"
+            android:layout_marginTop="44dp"
+            android:text="Logout" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

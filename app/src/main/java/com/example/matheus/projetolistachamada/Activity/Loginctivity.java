@@ -79,8 +79,6 @@ public class Loginctivity extends AppCompatActivity {
 
     private void validarLogin(){
         try{
-
-
             autenticacao = ConfiguracaoFirebase.getAutenticacao();
             autenticacao.signInWithEmailAndPassword(usuarios.getEmail(), usuarios.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override

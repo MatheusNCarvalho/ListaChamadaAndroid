@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
 import com.example.matheus.projetolistachamada.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class CadastrosActivity extends AppCompatActivity {
 
@@ -14,13 +16,21 @@ public class CadastrosActivity extends AppCompatActivity {
     private Button btCadastroProfessor;
     private Button btCadastroTurma;
     private Button btCadastroUsuario;
+    private Button btnLogout;
+
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastros);
 
+        autenticacao = ConfiguracaoFirebase.getAutenticacao();
+
         btCadastroAluno = (Button) findViewById(R.id.btCadastroAluno);
+        btnLogout = (Button) findViewById(R.id.btnLogout);
+
+
         btCadastroAluno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +63,16 @@ public class CadastrosActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent it = new Intent();
                 startActivity(it);
+            }
+        });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                autenticacao.signOut();
+
+                Intent intent = new Intent(CadastrosActivity.this, Loginctivity.class);
+                startActivity(intent);
             }
         });
 
