@@ -87,6 +87,8 @@ public class Loginctivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         abrirTelaPrincipal();
                         Toast.makeText(Loginctivity.this, "Login Efetuado com Sucesso", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(Loginctivity.this, "Email ou senha Incorretos", Toast.LENGTH_LONG).show();
                     }
                 }
             });
