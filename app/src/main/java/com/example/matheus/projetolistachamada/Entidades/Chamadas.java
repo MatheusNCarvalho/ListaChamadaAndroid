@@ -1,7 +1,5 @@
 package com.example.matheus.projetolistachamada.Entidades;
 
-import java.util.Date;
-
 /**
  * Created by Brunno on 29/10/17.
  */
@@ -9,12 +7,13 @@ import java.util.Date;
 public class Chamadas {
 
     private String id;
-    private Date dataChamada;
-    private String faltas;
+    private String nomeAluno;
 
-    private Turmas turma;
-    private Alunos aluno;
-    private Professores professor;
+    private String turma;
+    private String disciplina;
+    private String professor;
+    private long dataChamada;
+    private String faltas;
 
     public String getId() {
         return id;
@@ -24,11 +23,43 @@ public class Chamadas {
         this.id = id;
     }
 
-    public Date getDataChamada() {
+    public String getNomeAluno() {
+        return nomeAluno;
+    }
+
+    public void setNomeAluno(String nomeAluno) {
+        this.nomeAluno = nomeAluno;
+    }
+
+    public String getTurma() {
+        return turma;
+    }
+
+    public void setTurma(String turma) {
+        this.turma = turma;
+    }
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(String professor) {
+        this.professor = professor;
+    }
+
+    public long getDataChamada() {
         return dataChamada;
     }
 
-    public void setDataChamada(Date dataChamada) {
+    public void setDataChamada(long dataChamada) {
         this.dataChamada = dataChamada;
     }
 
@@ -38,29 +69,5 @@ public class Chamadas {
 
     public void setFaltas(String faltas) {
         this.faltas = faltas;
-    }
-
-    public Turmas getTurma() {
-        return turma;
-    }
-
-    public void setTurma(Turmas turma) {
-        this.turma = turma;
-    }
-
-    public Alunos getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Alunos aluno) {
-        this.aluno = aluno;
-    }
-
-    public Professores getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professores professor) {
-        this.professor = professor;
     }
 }

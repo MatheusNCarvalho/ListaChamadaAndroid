@@ -28,15 +28,16 @@
         <activity android:name=".Activity.AlunosActivity" />
         <activity android:name=".Activity.ProfessoresActivity" />
         <activity android:name=".Activity.CadastroTurmasActivity" />
-        <activity android:name=".Activity.TurmasActivity"></activity>
+        <activity android:name=".Activity.TurmasActivity" />
         <activity android:name=".Activity.CadastroTurmasActivity" />
         <activity
             android:name=".Activity.MenuLateralActivity"
             android:label="@string/title_activity_menu_lateral"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activity.MenuLateralMaterial"></activity>
+        <activity android:name=".Activity.MenuLateralMaterial" />
         <activity android:name=".Activity.CadastroUsuariosActivity" />
-        <activity android:name=".Activity.UsuariosActivity"></activity>
+        <activity android:name=".Activity.UsuariosActivity" />
+        <activity android:name=".Activity.ListaChamadaActivity"></activity>
     </application>
 
 </manifest>

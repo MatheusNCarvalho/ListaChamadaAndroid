@@ -43,7 +43,7 @@ public class CadastrosActivity extends AppCompatActivity {
         btCadastroProfessor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(CadastrosActivity.this, CadastroProfessoresActivity.class);
+                Intent it = new Intent(CadastrosActivity.this, ListaChamadaActivity.class);
                 startActivity(it);
             }
         });
