@@ -17,6 +17,7 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
         btCadastros = (Button) findViewById(R.id.btCadastros);
         btCadastros.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,8 +39,10 @@ public class PrincipalActivity extends AppCompatActivity {
         btProfessores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it  = new Intent(PrincipalActivity.this, ProfessoresActivity.class);
-                startActivity(it);
+                Intent it  = new Intent("Service_Bd");
+                startService(it);
+//                startActivity(it);
+
             }
         });
 

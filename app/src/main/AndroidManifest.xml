@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -38,6 +40,8 @@
         <activity android:name=".Activity.CadastroUsuariosActivity" />
         <activity android:name=".Activity.UsuariosActivity" />
         <activity android:name=".Activity.ListaChamadaActivity"></activity>
+
+
     </application>
 
 </manifest>

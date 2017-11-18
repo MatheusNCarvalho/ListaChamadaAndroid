@@ -1,8 +1,6 @@
 package com.example.matheus.projetolistachamada.Activity;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -44,19 +42,23 @@ public class MenuLateralMaterial extends AppCompatActivity {
                         new SectionDrawerItem().withName(R.string.drawer_item_section_header),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withIcon(FontAwesome.Icon.faw_plus_circle),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(FontAwesome.Icon.faw_sign_out),
-                        new SectionDrawerItem().withName("Listagem"),
-                        new SecondaryDrawerItem().withName("Listar Usuario").withIcon(FontAwesome.Icon.faw_user)
+                        new SectionDrawerItem().withName(R.string.drawer_item_section_header_listagem),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_usuarios).withIcon(FontAwesome.Icon.faw_user),
+                        new SectionDrawerItem().withName(R.string.drawer_item_section_header_cadastrado)
+
+
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        // do something with the clicked item :D
 
                              switch (position){
-                                 case 2:
+                                 case 5:
+                                     Intent it = new Intent(MenuLateralMaterial.this, AlunosActivity.class);
+                                     startActivity(it);
 
-                                     //Intent it = new Intent(MenuLateralMaterial.this, AlunosActivity.class);
-                                     //startActivity(it);
+                                     break;
+                                 case 2:
 
                                      break;
                              }

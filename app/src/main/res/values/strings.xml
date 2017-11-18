@@ -10,8 +10,23 @@
 
 
     <string name="action_settings">Settings</string>
+
+    <!--HEADER-->
+    <string name="drawer_item_section_header">Outras Opções</string>
+    <string name="drawer_item_section_header_cadastrado">Cadastrado</string>
+    <string name="drawer_item_section_header_listagem">Consultas</string>
+
+
+    <!--ITENS-->
     <string name="drawer_item_home">Material Drawer</string>
     <string name="drawer_item_settings">Configurações</string>
+    <string name="drawer_item_listagem_usuarios">Listagem Usuarios</string>
     <string name="drawer_item_logout">Sair</string>
-    <string name="drawer_item_section_header">Outras Opções</string>
+
+
+
+
+
+
+
 </resources>

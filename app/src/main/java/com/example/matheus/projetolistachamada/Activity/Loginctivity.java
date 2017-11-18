@@ -99,7 +99,7 @@ public class Loginctivity extends AppCompatActivity {
     }
 
     private void abrirTelaPrincipal(){
-        Intent intentAbrirTelaPrincipal =  new Intent(Loginctivity.this, CadastrosActivity.class);
+        Intent intentAbrirTelaPrincipal =  new Intent(Loginctivity.this, PrincipalActivity.class);
         startActivity(intentAbrirTelaPrincipal);
     }
 
@@ -118,4 +118,11 @@ public class Loginctivity extends AppCompatActivity {
         });
     }
 
+
+    public void startService(){
+        Intent intent = new Intent("Service_Bd");
+        startService(intent);
+
+
+    }
 }
