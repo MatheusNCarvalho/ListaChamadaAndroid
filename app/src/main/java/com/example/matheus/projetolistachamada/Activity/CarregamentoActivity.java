@@ -5,14 +5,17 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.matheus.projetolistachamada.DAO.AlunoDAO;
 import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
+import com.example.matheus.projetolistachamada.DAO.TurmaDAO;
 import com.example.matheus.projetolistachamada.Entidades.Alunos;
 
+import com.example.matheus.projetolistachamada.Entidades.Turmas;
 import com.example.matheus.projetolistachamada.R;
 import com.example.matheus.projetolistachamada.util.VerificaConexaoInternet;
 
@@ -20,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -30,14 +34,18 @@ public class CarregamentoActivity extends AppCompatActivity {
 
 
     private ProgressBar progressBar;
-    private boolean condicao = false;
+    private boolean condicaoAluno = false;
+    private boolean condicaoTurma = false;
     private TextView textView;
     private DatabaseReference databaseReference;
 
 
     private List<Alunos> alunosArrayList = new ArrayList<Alunos>();
+    private List<Turmas> turmasArrayList = new ArrayList<Turmas>();
+
 
     private AlunoDAO alunoDAO = new AlunoDAO(this);
+    private TurmaDAO turmaDAO = new TurmaDAO(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,41 +73,16 @@ public class CarregamentoActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        Log.i("Scri", "Teste Start");
+
     }
 
-//    public void progess() {
-//        new Thread(new Runnable() {
-//            public void run() {
-//                while (progressoStatus <5) {
-//                    progressoStatus +=  1;
-//
-//                    handler.post(new Runnable() {
-//                        public void run() {
-//                            carregaListaUsuario();
-//                            progressBar.setProgress(progressoStatus);
-//                            textView.setText("Fazendo a Sincronização da base de dados");
-//
-//                        }
-//                    });
-//                    try {
-//                        // Sleep for 200 milliseconds.
-//                        Thread.sleep(200);
-//
-////                        carregarSincronizamento();
-////                        progressBar.setProgress(progressoStatus);
-////                        textView.setText("Fazendo a Sincronização da base de dados");
-//
-//
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                progressBar.setVisibility(View.INVISIBLE);
-//            }
-//        }).start();
-//        Intent intent = new Intent(CarregamentoActivity.this, Loginctivity.class);
-//        startActivity(intent);
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("Scri", "Teste Start");
+    }
+
 
     public void carregarSincronizamento() {
 
@@ -110,15 +93,17 @@ public class CarregamentoActivity extends AppCompatActivity {
         }
 
         carregaListaUsuario();
+        carregaListaTurma();
 
 
     }
+
 
     public void paraSincronizamento() {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBarSincroniza);
 
-        if (condicao) {
+        if (condicaoAluno && condicaoTurma) {
             progressBar.setVisibility(View.INVISIBLE);
 
             Intent carr = new Intent(CarregamentoActivity.this, Loginctivity.class);
@@ -126,6 +111,34 @@ public class CarregamentoActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    private void carregaListaTurma() {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference.child("addturmas").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Turmas data = snapshot.getValue(Turmas.class);
+                    turmasArrayList.add(data);
+                }
+
+                if (turmasArrayList.size() > 0) {
+                    turmaDAO.delete();
+                    turmaDAO.save(turmasArrayList);
+                    turmasArrayList.clear();
+                    condicaoTurma = true;
+                    paraSincronizamento();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void carregaListaUsuario() {
@@ -148,7 +161,7 @@ public class CarregamentoActivity extends AppCompatActivity {
                     alunoDAO.save(alunosArrayList);
                     alunosArrayList.clear();
 
-                    condicao = true;
+                    condicaoAluno = true;
                     paraSincronizamento();
 
                 }
@@ -156,9 +169,12 @@ public class CarregamentoActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Log.i("Scrpit", "net" + databaseError);
 
             }
         });
 
     }
+
+
 }

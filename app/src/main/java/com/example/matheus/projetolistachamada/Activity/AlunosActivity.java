@@ -2,10 +2,12 @@ package com.example.matheus.projetolistachamada.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +40,7 @@ public class AlunosActivity extends AppCompatActivity {
     private ArrayList<Alunos> alunos;
     private DatabaseReference firebase;
     private ValueEventListener valueEventListenerAlunos;
+    private Toolbar tbAlunos;
 
     private AlunoDAO alunoDAO = new AlunoDAO(this);
 
@@ -47,7 +50,12 @@ public class AlunosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alunos);
         alunos = new ArrayList<>();
         listView = (ListView) findViewById(R.id.listAlunos);
+        tbAlunos =  (Toolbar) findViewById(R.id.tbAluno);
+        tbAlunos.setTitle("Listas de Alunos");
+        tbAlunos.setTitleTextColor(Color.WHITE);
 
+
+        setSupportActionBar(tbAlunos);
 
         firebase = ConfiguracaoFirebase.getFirebase().child("addalunos");
 

@@ -13,7 +13,7 @@
         tools:layout_editor_absoluteY="8dp">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar3"
+            android:id="@+id/tbAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -22,21 +22,15 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Lista de Alunos"
-            android:textAlignment="center" />
 
         <ListView
             android:id="@+id/listAlunos"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar3"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="44dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+
+            android:layout_marginTop="65dp" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
