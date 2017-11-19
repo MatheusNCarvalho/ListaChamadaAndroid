@@ -13,6 +13,14 @@
     tools:context="com.example.matheus.projetolistachamada.Activity.Loginctivity">
 
 
+    <ProgressBar
+        android:id="@+id/progressBar56"
+        style="@+id/progressBar_cyclic"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:layout_below="@+id/btListaProfessores"
+         />
+
     <EditText
         android:id="@+id/edtEmail"
         android:hint="E-MAIL"

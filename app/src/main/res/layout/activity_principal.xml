@@ -7,29 +7,6 @@
     tools:context="com.example.matheus.projetolistachamada.Activity.PrincipalActivity">
 
 
-
-
-
-    <LinearLayout
-        android:layout_width="184dp"
-        android:layout_height="172dp"
-        android:layout_marginTop="79dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="184dp"
-        tools:layout_editor_absoluteY="323dp"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_alignEnd="@+id/relativeLayout"
-        android:layout_marginEnd="192dp"
-        android:id="@+id/linearLayout">
-
-        <Button
-            android:id="@+id/btnProfessor"
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:text="Professor" />
-
-    </LinearLayout>
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="383dp"
@@ -43,67 +20,52 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true" />
 
-    <RelativeLayout
-        android:layout_width="366dp"
-        android:layout_height="217dp"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="87dp"
-        android:id="@+id/relativeLayout"
-        android:layout_below="@+id/toolbar2"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp">
+        android:layout_alignParentTop="true"
+        android:text="Pagina Principal"
+        android:textAlignment="center" />
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Pagina Principal"
-            android:textAlignment="center" />
+    <Button
+        android:id="@+id/btCadastros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:text="Cadastros" />
 
-        <Button
-            android:id="@+id/btCadastros"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textView2"
-            android:text="Cadastros" />
+    <Button
+        android:id="@+id/btlistaAlunos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btCadastros"
+        android:text="Alunos" />
 
-        <Button
-            android:id="@+id/btlistaAlunos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/btCadastros"
-            android:text="Alunos" />
+    <Button
+        android:id="@+id/btListaProfessores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/btlistaAlunos"
+        android:text="Professores" />
 
-        <Button
-            android:id="@+id/btListaProfessores"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/btlistaAlunos"
-            android:text="Professores" />
+    <ProgressBar
+        android:id="@+id/progressBar5"
+        style="@+id/progressBar_cyclic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btListaProfessores"
+        android:layout_marginTop="206dp" />
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="156dp"
-        android:layout_height="173dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="323dp"
-        android:layout_alignTop="@+id/linearLayout"
-        android:layout_alignEnd="@+id/relativeLayout"
-        android:layout_marginEnd="24dp">
-
-        <Button
-            android:id="@+id/btnAluno"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Alunos" />
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btListaProfessores"
+        android:layout_marginTop="72dp" />
 
 </RelativeLayout>

@@ -51,4 +51,9 @@ public class Alunos {
     public void setTurma(String turma) {
         this.turma = turma;
     }
+
+    @Override
+    public String toString() {
+        return nome + "\n"+ matricula +"\n"+ turma;
+    }
 }

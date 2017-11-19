@@ -3,8 +3,10 @@
     package="com.example.matheus.projetolistachamada">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.Loginctivity"
+            android:name=".Activity.CarregamentoActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -31,7 +33,7 @@
         <activity android:name=".Activity.ProfessoresActivity" />
         <activity android:name=".Activity.CadastroTurmasActivity" />
         <activity android:name=".Activity.TurmasActivity" />
-        <activity android:name=".Activity.CadastroTurmasActivity" />
+        <!--<activity android:name=".Activity.CadastroTurmasActivity" />-->
         <activity
             android:name=".Activity.MenuLateralActivity"
             android:label="@string/title_activity_menu_lateral"
@@ -39,9 +41,9 @@
         <activity android:name=".Activity.MenuLateralMaterial" />
         <activity android:name=".Activity.CadastroUsuariosActivity" />
         <activity android:name=".Activity.UsuariosActivity" />
-        <activity android:name=".Activity.ListaChamadaActivity"></activity>
-
-
+        <activity android:name=".Activity.ListaChamadaActivity" />
+        <activity android:name=".Activity.Loginctivity" />
+        <!--<activity android:name=".Activity.CarregamentoActivity"></activity>-->
     </application>
 
 </manifest>

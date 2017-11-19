@@ -24,7 +24,6 @@ import com.google.firebase.auth.GetTokenResult;
 public class Loginctivity extends AppCompatActivity {
 
 
-
     private EditText edtEmail;
     private EditText edtSenha;
     private Button btnLogar;
@@ -40,76 +39,76 @@ public class Loginctivity extends AppCompatActivity {
 
         autenticacao = ConfiguracaoFirebase.getAutenticacao();
 
-        if(autenticacao.getCurrentUser() != null){
+        if (autenticacao.getCurrentUser() != null) {
             abrirTelaPrincipal();
             finish();
         }
 
-            edtEmail = (EditText) findViewById(R.id.edtEmail);
-            edtSenha = (EditText) findViewById(R.id.edtSenha);
-            btnLogar = (Button) findViewById(R.id.btnLogar);
+        edtEmail = (EditText) findViewById(R.id.edtEmail);
+        edtSenha = (EditText) findViewById(R.id.edtSenha);
+        btnLogar = (Button) findViewById(R.id.btnLogar);
 
-            btnLogar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (!edtEmail.getText().toString().isEmpty() && !edtSenha.getText().toString().isEmpty()) {
+        btnLogar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!edtEmail.getText().toString().isEmpty() && !edtSenha.getText().toString().isEmpty()) {
 
-                        usuarios = new Usuarios();
-                        usuarios.setEmail(edtEmail.getText().toString());
-                        usuarios.setSenha(edtSenha.getText().toString());
-                        validarLogin();
+                    usuarios = new Usuarios();
+                    usuarios.setEmail(edtEmail.getText().toString());
+                    usuarios.setSenha(edtSenha.getText().toString());
+                    validarLogin();
 
-                    } else {
-                        Toast.makeText(Loginctivity.this, "Preencha os campos de email e senha", Toast.LENGTH_LONG).show();
-                    }
+                } else {
+                    Toast.makeText(Loginctivity.this, "Preencha os campos de email e senha", Toast.LENGTH_LONG).show();
                 }
-            });
+            }
+        });
 
-            textView = (TextView) findViewById(R.id.cliqueCadastro);
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent it = new Intent(Loginctivity.this, CadastroUsuariosActivity.class);
-                    startActivity(it);
-                }
-            });
+        textView = (TextView) findViewById(R.id.cliqueCadastro);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(Loginctivity.this, CadastroUsuariosActivity.class);
+                startActivity(it);
+            }
+        });
 
     }
 
 
-    private void validarLogin(){
-        try{
+    private void validarLogin() {
+        try {
             autenticacao = ConfiguracaoFirebase.getAutenticacao();
             autenticacao.signInWithEmailAndPassword(usuarios.getEmail(), usuarios.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         abrirTelaPrincipal();
                         Toast.makeText(Loginctivity.this, "Login Efetuado com Sucesso", Toast.LENGTH_LONG).show();
-                    }else{
+                    } else {
                         Toast.makeText(Loginctivity.this, "Email ou senha Incorretos", Toast.LENGTH_LONG).show();
                     }
                 }
             });
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d("Erro", String.valueOf(e));
         }
 
     }
 
-    private void abrirTelaPrincipal(){
-        Intent intentAbrirTelaPrincipal =  new Intent(Loginctivity.this, MenuLateralMaterial.class);
+    private void abrirTelaPrincipal() {
+        Intent intentAbrirTelaPrincipal = new Intent(Loginctivity.this, MenuLateralMaterial.class);
         startActivity(intentAbrirTelaPrincipal);
     }
 
 
-    private void pegartokenUsuario(){
+    private void pegartokenUsuario() {
         FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
         usuario.getToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
             @Override
             public void onComplete(@NonNull Task<GetTokenResult> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     String tokenId = task.getResult().getToken();
 
                 }
@@ -119,10 +118,4 @@ public class Loginctivity extends AppCompatActivity {
     }
 
 
-    public void startService(){
-        Intent intent = new Intent("Service_Bd");
-        startService(intent);
-
-
-    }
 }
