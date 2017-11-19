@@ -36,13 +36,11 @@ public class DisciplinaAdapter extends ArrayAdapter<Disciplinas>{
 
         if(disciplinas != null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.lista_alunos, parent , false);
-            TextView tvNome = (TextView) view.findViewById(R.id.tvNome);
-
+            view = inflater.inflate(R.layout.lista_disciplinas, parent , false);
+            TextView tvDisciplina = (TextView) view.findViewById(R.id.tvDisciplina);
 
             Disciplinas disciplinas2 = disciplinas.get(position);
-            tvNome.setText(disciplinas2.getNome());
-
+            tvDisciplina.setText(disciplinas2.getNome());
         }
         return view;
     }
