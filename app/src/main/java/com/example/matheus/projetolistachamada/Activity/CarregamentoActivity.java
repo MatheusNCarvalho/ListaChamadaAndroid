@@ -12,13 +12,16 @@ import android.widget.TextView;
 
 import com.example.matheus.projetolistachamada.DAO.AlunoDAO;
 import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
+import com.example.matheus.projetolistachamada.DAO.ProfessorDAO;
 import com.example.matheus.projetolistachamada.DAO.TurmaDAO;
 import com.example.matheus.projetolistachamada.Entidades.Alunos;
 
+import com.example.matheus.projetolistachamada.Entidades.Professores;
 import com.example.matheus.projetolistachamada.Entidades.Turmas;
 import com.example.matheus.projetolistachamada.R;
 import com.example.matheus.projetolistachamada.util.VerificaConexaoInternet;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,24 +39,32 @@ public class CarregamentoActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private boolean condicaoAluno = false;
     private boolean condicaoTurma = false;
+    private boolean condicaoProfessor = false;
     private TextView textView;
     private DatabaseReference databaseReference;
+
+    private FirebaseAuth autenticacao;
 
 
     private List<Alunos> alunosArrayList = new ArrayList<Alunos>();
     private List<Turmas> turmasArrayList = new ArrayList<Turmas>();
+    private List<Professores> professoresArrayList = new ArrayList<Professores>();
 
 
     private AlunoDAO alunoDAO = new AlunoDAO(this);
     private TurmaDAO turmaDAO = new TurmaDAO(this);
+    private ProfessorDAO professorDAO = new ProfessorDAO(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carregamento);
 
+        autenticacao = ConfiguracaoFirebase.getAutenticacao();
 
-        if (VerificaConexaoInternet.isOnline(this)) {
+
+        if (VerificaConexaoInternet.isOnline(this) && autenticacao.getCurrentUser() !=null) {
             progressBar = (ProgressBar) findViewById(R.id.progressBarSincroniza);
             textView = (TextView) findViewById(R.id.textViewTexto);
             //progess();
@@ -69,21 +80,6 @@ public class CarregamentoActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        Log.i("Scri", "Teste Start");
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i("Scri", "Teste Start");
-    }
-
-
     public void carregarSincronizamento() {
 
         try {
@@ -94,6 +90,7 @@ public class CarregamentoActivity extends AppCompatActivity {
 
         carregaListaUsuario();
         carregaListaTurma();
+        carregaListaProfessores();
 
 
     }
@@ -103,12 +100,43 @@ public class CarregamentoActivity extends AppCompatActivity {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBarSincroniza);
 
-        if (condicaoAluno && condicaoTurma) {
+        if (condicaoAluno && condicaoTurma && condicaoProfessor) {
             progressBar.setVisibility(View.INVISIBLE);
 
             Intent carr = new Intent(CarregamentoActivity.this, Loginctivity.class);
             startActivity(carr);
         }
+
+
+    }
+
+
+    private void carregaListaProfessores() {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference.child("addprofessores").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Professores obj = snapshot.getValue(Professores.class);
+                    professoresArrayList.add(obj);
+                }
+
+                if (professoresArrayList.size() > 0) {
+                    professorDAO.delete();
+                    professorDAO.save(professoresArrayList);
+                    professoresArrayList.clear();
+                    condicaoProfessor = true;
+                    paraSincronizamento();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
     }

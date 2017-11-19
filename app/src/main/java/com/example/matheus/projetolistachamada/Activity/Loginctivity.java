@@ -84,7 +84,9 @@ public class Loginctivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()) {
-                        abrirTelaPrincipal();
+                        Intent intent = new Intent(Loginctivity.this, CarregamentoActivity.class);
+                        startActivity(intent);
+                        //abrirTelaPrincipal();
                         Toast.makeText(Loginctivity.this, "Login Efetuado com Sucesso", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(Loginctivity.this, "Email ou senha Incorretos", Toast.LENGTH_LONG).show();

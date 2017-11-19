@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.matheus.projetolistachamada.Contratos.AlunoContrato;
+import com.example.matheus.projetolistachamada.Contratos.DisciplinaContrato;
 import com.example.matheus.projetolistachamada.Contratos.ProfessorContrato;
 import com.example.matheus.projetolistachamada.Contratos.TurmaContrato;
 
@@ -18,6 +19,9 @@ public class SqlLiteConfigHelp extends SQLiteOpenHelper {
 
     private static final Integer DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "chamadas.db";
+
+
+    private static final String SQL_DROP = " DROP TABLE IF NOT EXISTS " + ProfessorContrato.NOME_TABELA;
 
     public SqlLiteConfigHelp(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,8 +40,9 @@ public class SqlLiteConfigHelp extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL(SQL_DROP);
+        onCreate(db);
     }
 
 
@@ -46,18 +51,21 @@ public class SqlLiteConfigHelp extends SQLiteOpenHelper {
 //        scriptSQLCreate = new ArrayList<String>();
         ArrayList<String> scriptSQLCreate = new ArrayList<String>();
 
-        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + TurmaContrato.NOME_TABELA + "(" + TurmaContrato.COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + TurmaContrato.NOME_TABELA + " (" + TurmaContrato.COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + TurmaContrato.COLUNA_NOME + " TEXT ); ");
 
-        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + ProfessorContrato.NOME_TABELA + "(" + ProfessorContrato.COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + ProfessorContrato.NOME_TABELA + " (" + ProfessorContrato.COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ProfessorContrato.COLUNA_NOME + " TEXT, "
-                + ProfessorContrato.COLUNA_MATRICULA + " INTEGER, "
-                + ProfessorContrato.COLUNA_DATA_MATRICULA + " DATE ); ");
+                + ProfessorContrato.COLUNA_MATRICULA + " INTEGER ); ");
 
-        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + AlunoContrato.NOME_TABELA + "(" + AlunoContrato.COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + AlunoContrato.NOME_TABELA + " (" + AlunoContrato.COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + AlunoContrato.COLUNA_NOME + " TEXT, "
                 + AlunoContrato.COLUNA_MATRICULA + " INTEGER, "
                 + AlunoContrato.COLUNA_TURMA + " TEXT ); ");
+
+        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + DisciplinaContrato.NOME_TABELA +
+                "(" + DisciplinaContrato.COLUNA_ID + " TEXT, "
+                + DisciplinaContrato.COLUNA_NOME + " TEXT ); ");
 
 
 

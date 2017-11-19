@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.matheus.projetolistachamada.Contratos.AlunoContrato;
 import com.example.matheus.projetolistachamada.Entidades.Alunos;
+import com.example.matheus.projetolistachamada.Entidades.Usuarios;
 import com.example.matheus.projetolistachamada.Helper.SqlLiteConfigHelp;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import java.util.List;
  * Created by Matheus on 18/11/2017.
  */
 
- public class AlunoDAO {
+public class AlunoDAO {
 
     private SqlLiteConfigHelp sqlLiteConfig;
 
@@ -27,14 +28,14 @@ import java.util.List;
     }
 
 
-    public  boolean save(List<Alunos> alunosArrayList){
-        SQLiteDatabase db =  this.sqlLiteConfig.getWritableDatabase();
+    public boolean save(List<Alunos> alunosArrayList) {
+        SQLiteDatabase db = this.sqlLiteConfig.getWritableDatabase();
         long linhas = 0;
 
-        try{
+        try {
 
             db.beginTransactionNonExclusive();
-            for(int i =0; i<alunosArrayList.size(); i++){
+            for (int i = 0; i < alunosArrayList.size(); i++) {
 
                 ContentValues valores = new ContentValues();
                 valores.put(AlunoContrato.COLUNA_NOME, alunosArrayList.get(i).getNome());
@@ -43,34 +44,60 @@ import java.util.List;
 
                 linhas = db.insert(AlunoContrato.NOME_TABELA, null, valores);
 
-
-//                db.setTransactionSuccessful();
-//                if(linhas != -1){
-//                    db.endTransaction();
-//                }
-
             }
             db.setTransactionSuccessful();
 
-        }catch (Exception e){
-            Log.e("Error",e.toString());
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
             db.endTransaction();
-        }finally {
+        } finally {
             db.endTransaction();
         }
 
 
-        return  linhas == -1 ? false : true;
+        return linhas == -1 ? false : true;
     }
 
 
-    public  boolean delete(){
-        SQLiteDatabase db =  this.sqlLiteConfig.getWritableDatabase();
 
-        long linhas =0;
+    public boolean salvar(Alunos alunos) {
+        SQLiteDatabase db = this.sqlLiteConfig.getWritableDatabase();
+        long linhas = 0;
+
+        try {
+
+            db.beginTransactionNonExclusive();
+
+                ContentValues valores = new ContentValues();
+                valores.put(AlunoContrato.COLUNA_ID, alunos.getId());
+                valores.put(AlunoContrato.COLUNA_NOME, alunos.getNome());
+                valores.put(AlunoContrato.COLUNA_MATRICULA, alunos.getMatricula());
+                valores.put(AlunoContrato.COLUNA_TURMA, alunos.getTurma());
+
+                linhas = db.insert(AlunoContrato.NOME_TABELA, null, valores);
 
 
-        try{
+            db.setTransactionSuccessful();
+
+        } catch (Exception e) {
+            Log.e("Error", e.toString());
+            db.endTransaction();
+        } finally {
+            db.endTransaction();
+        }
+
+
+        return linhas == -1 ? false : true;
+    }
+
+
+    public boolean delete() {
+        SQLiteDatabase db = this.sqlLiteConfig.getWritableDatabase();
+
+        long linhas = 0;
+
+
+        try {
             db.beginTransactionNonExclusive();
 //            String condicao = AlunoContrato.COLUNA_ID+"=?";
 //            String[] argumentos = {id.toString()};
@@ -78,16 +105,17 @@ import java.util.List;
 //            db.delete(AlunoContrato.NOME_TABELA, condicao, argumentos);
             linhas = db.delete(AlunoContrato.NOME_TABELA, null, null);
             db.setTransactionSuccessful();
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d("Error", e.toString());
             db.endTransaction();
-        }finally {
+        } finally {
             db.endTransaction();
         }
-        return linhas <=0 ? false : true;
+        return linhas <= 0 ? false : true;
 
     }
-//
+
+    //
 //    public boolean update( Alunos usuario){
 //        SQLiteDatabase db =  this.sqlLiteConfig.getWritableDatabase();
 //        long linhas = 0;
@@ -116,15 +144,15 @@ import java.util.List;
 //        return  linhas != -1 ? false : true;
 //    }
 //
-    public ArrayList<Alunos> buscarTodos(){
-        SQLiteDatabase db =  this.sqlLiteConfig.getReadableDatabase();
+    public ArrayList<Alunos> buscarTodos() {
+        SQLiteDatabase db = this.sqlLiteConfig.getReadableDatabase();
         String[] colunas = {AlunoContrato.COLUNA_ID, AlunoContrato.COLUNA_NOME, AlunoContrato.COLUNA_MATRICULA, AlunoContrato.COLUNA_TURMA};
 
-        Cursor cursor = db.query(false,AlunoContrato.NOME_TABELA,colunas,null,null,null,null,AlunoContrato.COLUNA_NOME+" ASC",null);
+        Cursor cursor = db.query(false, AlunoContrato.NOME_TABELA, colunas, null, null, null, null, AlunoContrato.COLUNA_NOME + " ASC", null);
 
         ArrayList<Alunos> contatos = new ArrayList<Alunos>();
-        while(cursor.moveToNext()){
-            Alunos usuario =  new Alunos();
+        while (cursor.moveToNext()) {
+            Alunos usuario = new Alunos();
 
             usuario.setId(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_ID)));
             usuario.setNome(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_NOME)));
