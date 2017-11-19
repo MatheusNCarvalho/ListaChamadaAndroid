@@ -19,6 +19,7 @@ import com.example.matheus.projetolistachamada.DAO.AlunoDAO;
 import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
 import com.example.matheus.projetolistachamada.Entidades.Alunos;
 import com.example.matheus.projetolistachamada.R;
+import com.example.matheus.projetolistachamada.util.VerificaConexaoInternet;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,13 +49,10 @@ public class AlunosActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listAlunos);
 
 
-
-
-
         firebase = ConfiguracaoFirebase.getFirebase().child("addalunos");
 
 
-        if (isOnline(this)) {
+        if (VerificaConexaoInternet.isOnline(this)) {
             valueEventListenerAlunos = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -83,7 +81,7 @@ public class AlunosActivity extends AppCompatActivity {
             alunos.clear();
             alunos = alunoDAO.buscarTodos();
 
-            adapterAluno =  new ArrayAdapter<Alunos>(AlunosActivity.this, android.R.layout.simple_list_item_1, alunos);
+            adapterAluno = new ArrayAdapter<Alunos>(AlunosActivity.this, android.R.layout.simple_list_item_1, alunos);
             listView.setAdapter(adapterAluno);
 
 
@@ -96,34 +94,31 @@ public class AlunosActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        if(isOnline(this))
+        if (VerificaConexaoInternet.isOnline(this))
             firebase.addValueEventListener(valueEventListenerAlunos);
 
 
     }
 
 
-
     @Override
     protected void onStop() {
         super.onStop();
-        if(isOnline(this))
+        if (VerificaConexaoInternet.isOnline(this))
             firebase.removeEventListener(valueEventListenerAlunos);
     }
 
 
-
-
-    public static boolean isOnline(Context contexto) {
-        ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);// Pego a conectividade do contexto
-
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();// Crio o objeto netInfo que recebe as informacoes da Network
-
-        if ((netInfo != null) && (netInfo.isConnectedOrConnecting()) && (netInfo.isAvailable())) { // Se nao tem conectividade retorna false
-            return true;
-        }
-        return false;
-    }
+//    public static boolean isOnline(Context contexto) {
+//        ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);// Pego a conectividade do contexto
+//
+//        NetworkInfo netInfo = cm.getActiveNetworkInfo();// Crio o objeto netInfo que recebe as informacoes da Network
+//
+//        if ((netInfo != null) && (netInfo.isConnectedOrConnecting()) && (netInfo.isAvailable())) { // Se nao tem conectividade retorna false
+//            return true;
+//        }
+//        return false;
+//    }
 
 
 }
