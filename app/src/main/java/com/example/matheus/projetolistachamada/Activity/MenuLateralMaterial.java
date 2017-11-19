@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
 import com.example.matheus.projetolistachamada.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
@@ -18,7 +20,12 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
+
+
+
 public class MenuLateralMaterial extends AppCompatActivity {
+
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,8 @@ public class MenuLateralMaterial extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        autenticacao = ConfiguracaoFirebase.getAutenticacao();
 
         //if you want to update the items at a later time it is recommended to keep it in a variable
         // trad: se você deseja atualizar os itens em um momento posterior, recomenda-se mantê-lo em uma variável
@@ -92,6 +101,11 @@ public class MenuLateralMaterial extends AppCompatActivity {
                                 Intent intentUsuarioConsulta = new Intent(MenuLateralMaterial.this, UsuariosActivity.class);
                                 startActivity(intentUsuarioConsulta);
                                 break;
+                            case 13:
+                                autenticacao.signOut();
+                                Intent intent = new Intent(MenuLateralMaterial.this, Loginctivity.class);
+                                startActivity(intent);
+
                         }
 
                         Toast.makeText(getApplicationContext(), "Item Clicado: " + position, Toast.LENGTH_SHORT).show();
