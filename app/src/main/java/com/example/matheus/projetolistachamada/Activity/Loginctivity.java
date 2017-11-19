@@ -99,7 +99,7 @@ public class Loginctivity extends AppCompatActivity {
     }
 
     private void abrirTelaPrincipal(){
-        Intent intentAbrirTelaPrincipal =  new Intent(Loginctivity.this, PrincipalActivity.class);
+        Intent intentAbrirTelaPrincipal =  new Intent(Loginctivity.this, MenuLateralMaterial.class);
         startActivity(intentAbrirTelaPrincipal);
     }
 

@@ -20,7 +20,16 @@
     <!--ITENS-->
     <string name="drawer_item_home">Material Drawer</string>
     <string name="drawer_item_settings">Configurações</string>
-    <string name="drawer_item_listagem_usuarios">Listagem Usuarios</string>
+    <string name="drawer_item_listagem_usuarios">Usuarios</string>
+    <string name="drawer_item_listagem_professores">Professores</string>
+    <string name="drawer_item_listagem_turmas">Turmas</string>
+    <string name="drawer_item_listagem_alunos">Alunos</string>
+
+    <string name="drawer_item_cadastro_alunos">Alunos</string>
+    <string name="drawer_item_cadastro_usuarios">Usuarios</string>
+    <string name="drawer_item_cadastro_professores">Professores</string>
+    <string name="drawer_item_cadastro_turmas">Turmas</string>
+
     <string name="drawer_item_logout">Sair</string>
 
 

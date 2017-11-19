@@ -28,7 +28,6 @@ public class MenuLateralMaterial extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-
         //if you want to update the items at a later time it is recommended to keep it in a variable
         // trad: se você deseja atualizar os itens em um momento posterior, recomenda-se mantê-lo em uma variável
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.drawer_item_home).withIcon(FontAwesome.Icon.faw_home);
@@ -39,29 +38,61 @@ public class MenuLateralMaterial extends AppCompatActivity {
                 .withToolbar(toolbar)
                 .addDrawerItems(
                         item1,
-                        new SectionDrawerItem().withName(R.string.drawer_item_section_header),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withIcon(FontAwesome.Icon.faw_plus_circle),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(FontAwesome.Icon.faw_sign_out),
+                        new SectionDrawerItem().withName(R.string.drawer_item_section_header_cadastrado),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_alunos).withIcon(FontAwesome.Icon.faw_user_plus),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_professores).withIcon(FontAwesome.Icon.faw_graduation_cap),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_turmas).withIcon(FontAwesome.Icon.faw_users),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_usuarios).withIcon(FontAwesome.Icon.faw_user),
+
                         new SectionDrawerItem().withName(R.string.drawer_item_section_header_listagem),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_usuarios).withIcon(FontAwesome.Icon.faw_user),
-                        new SectionDrawerItem().withName(R.string.drawer_item_section_header_cadastrado)
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_alunos).withIcon(FontAwesome.Icon.faw_search),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_professores).withIcon(FontAwesome.Icon.faw_search),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_turmas).withIcon(FontAwesome.Icon.faw_search),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_usuarios).withIcon(FontAwesome.Icon.faw_search),
 
-
+                        new SectionDrawerItem().withName(R.string.drawer_item_section_header),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings).withIcon(FontAwesome.Icon.faw_cogs),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_logout).withIcon(FontAwesome.Icon.faw_sign_out)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
 
-                             switch (position){
-                                 case 5:
-                                     Intent it = new Intent(MenuLateralMaterial.this, AlunosActivity.class);
-                                     startActivity(it);
+                        switch (position) {
+                            case 2:
+                                Intent intentAlunoCadastro = new Intent(MenuLateralMaterial.this, CadastroAlunosActivity.class);
+                                startActivity(intentAlunoCadastro);
+                                break;
+                            case 3:
+                                Intent intentProfessorCadastro = new Intent(MenuLateralMaterial.this, CadastroProfessoresActivity.class);
+                                startActivity(intentProfessorCadastro);
+                                break;
+                            case 4:
+                                Intent intentTurmaCadastro = new Intent(MenuLateralMaterial.this, CadastroTurmasActivity.class);
+                                startActivity(intentTurmaCadastro);
+                                break;
+                            case 5:
+                                Intent intentUsuarioCadastro = new Intent(MenuLateralMaterial.this, CadastroUsuariosActivity.class);
+                                startActivity(intentUsuarioCadastro);
+                                break;
 
-                                     break;
-                                 case 2:
-
-                                     break;
-                             }
+                            case 7:
+                                Intent intentAlunoConsulta = new Intent(MenuLateralMaterial.this, AlunosActivity.class);
+                                startActivity(intentAlunoConsulta);
+                                break;
+                            case 8:
+                                Intent intentProfessorConsulta = new Intent(MenuLateralMaterial.this, ProfessoresActivity.class);
+                                startActivity(intentProfessorConsulta);
+                                break;
+                            case 9:
+                                Intent intentTurmaConsulta = new Intent(MenuLateralMaterial.this, TurmasActivity.class);
+                                startActivity(intentTurmaConsulta);
+                                break;
+                            case 10:
+                                Intent intentUsuarioConsulta = new Intent(MenuLateralMaterial.this, UsuariosActivity.class);
+                                startActivity(intentUsuarioConsulta);
+                                break;
+                        }
 
                         Toast.makeText(getApplicationContext(), "Item Clicado: " + position, Toast.LENGTH_SHORT).show();
 
