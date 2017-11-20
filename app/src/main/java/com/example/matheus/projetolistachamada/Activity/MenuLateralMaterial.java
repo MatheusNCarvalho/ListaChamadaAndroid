@@ -49,13 +49,13 @@ public class MenuLateralMaterial extends AppCompatActivity {
                         item1,
                         new SectionDrawerItem().withName(R.string.drawer_item_section_header_cadastrado),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_alunos).withIcon(FontAwesome.Icon.faw_user_plus),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_professores).withIcon(FontAwesome.Icon.faw_graduation_cap),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_disciplinas).withIcon(FontAwesome.Icon.faw_graduation_cap),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_turmas).withIcon(FontAwesome.Icon.faw_users),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_usuarios).withIcon(FontAwesome.Icon.faw_user),
 
                         new SectionDrawerItem().withName(R.string.drawer_item_section_header_listagem),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_alunos).withIcon(FontAwesome.Icon.faw_search),
-                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_professores).withIcon(FontAwesome.Icon.faw_search),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_disciplinas).withIcon(FontAwesome.Icon.faw_search),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_turmas).withIcon(FontAwesome.Icon.faw_search),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_listagem_usuarios).withIcon(FontAwesome.Icon.faw_search),
 
@@ -73,8 +73,8 @@ public class MenuLateralMaterial extends AppCompatActivity {
                                 startActivity(intentAlunoCadastro);
                                 break;
                             case 3:
-                                Intent intentProfessorCadastro = new Intent(MenuLateralMaterial.this, CadastroProfessoresActivity.class);
-                                startActivity(intentProfessorCadastro);
+                                Intent intentProfessorDisciplina = new Intent(MenuLateralMaterial.this, CadastroDisciplinasActivity.class);
+                                startActivity(intentProfessorDisciplina);
                                 break;
                             case 4:
                                 Intent intentTurmaCadastro = new Intent(MenuLateralMaterial.this, CadastroTurmasActivity.class);
@@ -90,8 +90,8 @@ public class MenuLateralMaterial extends AppCompatActivity {
                                 startActivity(intentAlunoConsulta);
                                 break;
                             case 8:
-                                Intent intentProfessorConsulta = new Intent(MenuLateralMaterial.this, ProfessoresActivity.class);
-                                startActivity(intentProfessorConsulta);
+                                Intent intentDisciplinaConsulta = new Intent(MenuLateralMaterial.this, DisciplinaActivity.class);
+                                startActivity(intentDisciplinaConsulta);
                                 break;
                             case 9:
                                 Intent intentTurmaConsulta = new Intent(MenuLateralMaterial.this, TurmasActivity.class);
@@ -108,7 +108,6 @@ public class MenuLateralMaterial extends AppCompatActivity {
 
                         }
 
-                        Toast.makeText(getApplicationContext(), "Item Clicado: " + position, Toast.LENGTH_SHORT).show();
 
                         return false;
                     }

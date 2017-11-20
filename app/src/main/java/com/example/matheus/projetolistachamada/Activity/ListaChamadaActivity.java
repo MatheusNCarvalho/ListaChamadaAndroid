@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class ListaChamadaActivity extends AppCompatActivity {
 
@@ -109,6 +110,7 @@ public class ListaChamadaActivity extends AppCompatActivity {
     private boolean salvarFaltasChamada( String faltas){
         try{
             chamadas = new Chamadas();
+            chamadas.setId(UUID.randomUUID().toString());
             chamadas.setNomeAluno(alunosChamada.getNome());
             chamadas.setTurma(alunosChamada.getTurma());
 

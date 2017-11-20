@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -41,6 +42,8 @@ public class AlunosActivity extends AppCompatActivity {
     private DatabaseReference firebase;
     private ValueEventListener valueEventListenerAlunos;
     private Toolbar tbAlunos;
+
+    private Alunos alunoSelecionado;
 
     private AlunoDAO alunoDAO = new AlunoDAO(this);
 
@@ -75,6 +78,12 @@ public class AlunosActivity extends AppCompatActivity {
                     listView.setAdapter(adapterAluno);
                     adapterAluno.notifyDataSetChanged();
 
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        }
+                    });
 
                 }
 
@@ -91,7 +100,6 @@ public class AlunosActivity extends AppCompatActivity {
 
             adapterAluno = new ArrayAdapter<Alunos>(AlunosActivity.this, android.R.layout.simple_list_item_1, alunos);
             listView.setAdapter(adapterAluno);
-
 
         }
 

@@ -38,11 +38,16 @@ public class AlunoAdapter extends ArrayAdapter<Alunos>{
             TextView tvNome = (TextView) view.findViewById(R.id.tvNome);
             TextView tvMatricula = (TextView) view.findViewById(R.id.tvMatricula);
             TextView tvTurma = (TextView) view.findViewById(R.id.tvTurma);
+            TextView tvDisciplina = (TextView) view.findViewById(R.id.tvDisciplina);
+
 
             Alunos alunos2 = aluno.get(position);
             tvNome.setText(alunos2.getNome());
             tvMatricula.setText(alunos2.getMatricula().toString());
             tvTurma.setText(alunos2.getTurma().toString());
+            tvDisciplina.setText(alunos2.getDisciplina());
+
+
         }
 
         return view;

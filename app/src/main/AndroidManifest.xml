@@ -28,9 +28,9 @@
         <activity android:name=".Activity.PrincipalActivity" />
         <activity android:name=".Activity.CadastroAlunosActivity" />
         <activity android:name=".Activity.CadastrosActivity" />
-        <activity android:name=".Activity.CadastroProfessoresActivity" />
+        <activity android:name=".Activity.CadastroDisciplinasActivity" />
         <activity android:name=".Activity.AlunosActivity" />
-        <activity android:name=".Activity.ProfessoresActivity" />
+        <activity android:name=".Activity.DisciplinaActivity" />
         <activity android:name=".Activity.CadastroTurmasActivity" />
         <activity android:name=".Activity.TurmasActivity" />
         <!--<activity android:name=".Activity.CadastroTurmasActivity" />-->

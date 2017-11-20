@@ -13,6 +13,7 @@ public class Alunos {
     private Date dataMatricula;
     private Integer matricula;
     private String turma;
+    private String disciplina;
 
     public String getId() {
         return id;
@@ -47,6 +48,14 @@ public class Alunos {
     }
 
     public String getTurma() { return turma; }
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
 
     public void setTurma(String turma) {
         this.turma = turma;
