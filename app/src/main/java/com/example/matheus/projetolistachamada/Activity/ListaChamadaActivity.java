@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
@@ -114,12 +116,12 @@ public class ListaChamadaActivity extends AppCompatActivity {
             chamadas.setNomeAluno(alunosChamada.getNome());
             chamadas.setTurma(alunosChamada.getTurma());
 
-            Date d = new Date();
-            chamadas.setDataChamada(d.getTime());
+            String data = getDateTime();
+            chamadas.setDataChamada(data);
             chamadas.setFaltas(faltas);
 
             firebase = ConfiguracaoFirebase.getFirebase().child("addchamadas");
-            firebase.child(chamadas.getNomeAluno()).setValue(alunos);
+            firebase.child(chamadas.getId()).setValue(chamadas);
             Toast.makeText(ListaChamadaActivity.this, "falta salva com sucesso!", Toast.LENGTH_LONG).show();
 
 
@@ -128,6 +130,11 @@ public class ListaChamadaActivity extends AppCompatActivity {
             e.printStackTrace();
             return false;
         }
+    }
+    private String getDateTime() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 
     @Override

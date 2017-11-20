@@ -144,7 +144,7 @@ public class CadastroAlunosActivity extends AppCompatActivity {
     private boolean salvarAluno(Alunos alunos){
         try{
             firebase = ConfiguracaoFirebase.getFirebase().child("addalunos");
-            firebase.child(alunos.getNome()).setValue(alunos);
+            firebase.child(alunos.getId()).setValue(alunos);
             Toast.makeText(CadastroAlunosActivity.this, "Aluno salvo com sucesso!", Toast.LENGTH_LONG).show();
 
 

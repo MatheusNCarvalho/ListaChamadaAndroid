@@ -12,7 +12,7 @@ public class Chamadas {
     private String turma;
     private String disciplina;
     private String professor;
-    private long dataChamada;
+    private String dataChamada;
     private String faltas;
 
     public String getId() {
@@ -55,11 +55,11 @@ public class Chamadas {
         this.professor = professor;
     }
 
-    public long getDataChamada() {
+    public String getDataChamada() {
         return dataChamada;
     }
 
-    public void setDataChamada(long dataChamada) {
+    public void setDataChamada(String dataChamada) {
         this.dataChamada = dataChamada;
     }
 
