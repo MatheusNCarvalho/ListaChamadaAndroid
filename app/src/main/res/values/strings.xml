@@ -27,6 +27,7 @@
 
     <string name="drawer_item_cadastro_alunos">Alunos</string>
     <string name="drawer_item_cadastro_usuarios">Usuarios</string>
+    <string name="drawer_item_cadastro_chamadas">Chamadas</string>
     <string name="drawer_item_cadastro_disciplinas">Disciplinas</string>
     <string name="drawer_item_cadastro_turmas">Turmas</string>
 

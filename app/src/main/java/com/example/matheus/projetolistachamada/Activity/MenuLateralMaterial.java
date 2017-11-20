@@ -51,6 +51,7 @@ public class MenuLateralMaterial extends AppCompatActivity {
                         new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_alunos).withIcon(FontAwesome.Icon.faw_user_plus),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_disciplinas).withIcon(FontAwesome.Icon.faw_graduation_cap),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_turmas).withIcon(FontAwesome.Icon.faw_users),
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_chamadas).withIcon(FontAwesome.Icon.faw_users),
                         new SecondaryDrawerItem().withName(R.string.drawer_item_cadastro_usuarios).withIcon(FontAwesome.Icon.faw_user),
 
                         new SectionDrawerItem().withName(R.string.drawer_item_section_header_listagem),
@@ -81,6 +82,11 @@ public class MenuLateralMaterial extends AppCompatActivity {
                                 startActivity(intentTurmaCadastro);
                                 break;
                             case 5:
+                                Intent intentChamdas = new Intent(MenuLateralMaterial.this, ListaChamadaActivity.class);
+                                startActivity(intentChamdas);
+                                break;
+
+                            case 6:
                                 Intent intentUsuarioCadastro = new Intent(MenuLateralMaterial.this, CadastroUsuariosActivity.class);
                                 startActivity(intentUsuarioCadastro);
                                 break;
