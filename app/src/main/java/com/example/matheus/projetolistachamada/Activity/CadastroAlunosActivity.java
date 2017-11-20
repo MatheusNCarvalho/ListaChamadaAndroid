@@ -35,8 +35,6 @@ public class CadastroAlunosActivity extends AppCompatActivity {
 
     private Alunos alunos;
 
-
-
     private DatabaseReference firebase;
 
     private List<String> arrayTurma = new ArrayList<>();
@@ -48,10 +46,6 @@ public class CadastroAlunosActivity extends AppCompatActivity {
     private DatabaseReference database;
     private Spinner spTurmas;
     private Spinner spDisplinas;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
