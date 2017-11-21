@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:text="Lista de Professores"
+            android:text="Lista de Disciplinas"
             android:textAlignment="center"
             android:textSize="18sp" />
 
