@@ -37,7 +37,7 @@ public class DisciplinaAdapter extends ArrayAdapter<Disciplinas>{
         if(disciplinas != null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.lista_disciplinas, parent , false);
-            TextView tvDisciplina = (TextView) view.findViewById(R.id.tvDisciplina);
+            TextView tvDisciplina = (TextView) view.findViewById(R.id.tvDisciplinas);
 
             Disciplinas disciplinas2 = disciplinas.get(position);
             tvDisciplina.setText(disciplinas2.getNome());
