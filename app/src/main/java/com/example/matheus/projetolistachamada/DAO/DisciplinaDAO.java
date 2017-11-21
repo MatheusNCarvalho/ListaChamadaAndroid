@@ -136,21 +136,21 @@ public class DisciplinaDAO {
 //        return  linhas != -1 ? false : true;
 //    }
 //
-    public ArrayList<Disciplinas> buscarTodos() {
+    public ArrayList<String> buscarTodos() {
 
         SQLiteDatabase db = this.sqlLiteConfig.getReadableDatabase();
         String[] colunas = {DisciplinaContrato.COLUNA_ID, DisciplinaContrato.COLUNA_NOME};
 
         Cursor cursor = db.query(false, DisciplinaContrato.NOME_TABELA, colunas, null, null, null, null, DisciplinaContrato.COLUNA_NOME + " ASC", null);
 
-        ArrayList<Disciplinas> contatos = new ArrayList<Disciplinas>();
+        ArrayList<String> contatos = new ArrayList<String>();
         while (cursor.moveToNext()) {
             Disciplinas obj = new Disciplinas();
 
             obj.setId(cursor.getString(cursor.getColumnIndex(DisciplinaContrato.COLUNA_ID)));
             obj.setNome(cursor.getString(cursor.getColumnIndex(DisciplinaContrato.COLUNA_NOME)));
 
-            contatos.add(obj);
+            contatos.add(obj.toString());
         }
 
         cursor.close();

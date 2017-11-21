@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.matheus.projetolistachamada.Contratos.AlunoContrato;
+import com.example.matheus.projetolistachamada.Contratos.ChamadaContrato;
 import com.example.matheus.projetolistachamada.Contratos.DisciplinaContrato;
 import com.example.matheus.projetolistachamada.Contratos.ProfessorContrato;
 import com.example.matheus.projetolistachamada.Contratos.TurmaContrato;
@@ -58,7 +59,7 @@ public class SqlLiteConfigHelp extends SQLiteOpenHelper {
                 + ProfessorContrato.COLUNA_NOME + " TEXT, "
                 + ProfessorContrato.COLUNA_MATRICULA + " INTEGER ); ");
 
-        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + AlunoContrato.NOME_TABELA + " (" + AlunoContrato.COLUNA_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+        scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + AlunoContrato.NOME_TABELA + " (" + AlunoContrato.COLUNA_ID + " TEXT, "
                 + AlunoContrato.COLUNA_NOME + " TEXT, "
                 + AlunoContrato.COLUNA_MATRICULA + " INTEGER, "
                 + AlunoContrato.COLUNA_TURMA + " TEXT ); ");
@@ -66,6 +67,8 @@ public class SqlLiteConfigHelp extends SQLiteOpenHelper {
         scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + DisciplinaContrato.NOME_TABELA +
                 "(" + DisciplinaContrato.COLUNA_ID + " TEXT, "
                 + DisciplinaContrato.COLUNA_NOME + " TEXT ); ");
+
+
 
 
 

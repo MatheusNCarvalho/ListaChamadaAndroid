@@ -12,10 +12,12 @@ import android.widget.TextView;
 
 import com.example.matheus.projetolistachamada.DAO.AlunoDAO;
 import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
+import com.example.matheus.projetolistachamada.DAO.DisciplinaDAO;
 import com.example.matheus.projetolistachamada.DAO.ProfessorDAO;
 import com.example.matheus.projetolistachamada.DAO.TurmaDAO;
 import com.example.matheus.projetolistachamada.Entidades.Alunos;
 
+import com.example.matheus.projetolistachamada.Entidades.Disciplinas;
 import com.example.matheus.projetolistachamada.Entidades.Professores;
 import com.example.matheus.projetolistachamada.Entidades.Turmas;
 import com.example.matheus.projetolistachamada.R;
@@ -40,6 +42,7 @@ public class CarregamentoActivity extends AppCompatActivity {
     private boolean condicaoAluno = false;
     private boolean condicaoTurma = false;
     private boolean condicaoProfessor = false;
+    private boolean condicaoDisciplina = false;
     private TextView textView;
     private DatabaseReference databaseReference;
 
@@ -49,11 +52,13 @@ public class CarregamentoActivity extends AppCompatActivity {
     private List<Alunos> alunosArrayList = new ArrayList<Alunos>();
     private List<Turmas> turmasArrayList = new ArrayList<Turmas>();
     private List<Professores> professoresArrayList = new ArrayList<Professores>();
+    private  List<Disciplinas> disciplinasesArrayList = new ArrayList<Disciplinas>();
 
 
     private AlunoDAO alunoDAO = new AlunoDAO(this);
     private TurmaDAO turmaDAO = new TurmaDAO(this);
     private ProfessorDAO professorDAO = new ProfessorDAO(this);
+    private DisciplinaDAO disciplinaDAO = new DisciplinaDAO(this);
 
 
     @Override
@@ -82,25 +87,29 @@ public class CarregamentoActivity extends AppCompatActivity {
 
     public void carregarSincronizamento() {
 
-        try {
-            Thread.sleep(300);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Thread.sleep(300);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         carregaListaUsuario();
         carregaListaTurma();
         carregaListaProfessores();
+        carregaListaDisciplinas();
+
 
 
     }
+
+
 
 
     public void paraSincronizamento() {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBarSincroniza);
 
-        if (condicaoAluno && condicaoTurma && condicaoProfessor) {
+        if (condicaoAluno && condicaoTurma && condicaoProfessor && condicaoDisciplina) {
             progressBar.setVisibility(View.INVISIBLE);
 
             Intent carr = new Intent(CarregamentoActivity.this, Loginctivity.class);
@@ -110,6 +119,35 @@ public class CarregamentoActivity extends AppCompatActivity {
 
     }
 
+
+    private void carregaListaDisciplinas() {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference.child("adddisciplinas").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Disciplinas obj = snapshot.getValue(Disciplinas.class);
+                    disciplinasesArrayList.add(obj);
+                }
+
+                if (disciplinasesArrayList.size() > 0) {
+                    disciplinaDAO.delete();
+                    disciplinaDAO.save(disciplinasesArrayList);
+                    disciplinasesArrayList.clear();
+                    condicaoDisciplina = true;
+                    paraSincronizamento();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
 
     private void carregaListaProfessores() {
         databaseReference = FirebaseDatabase.getInstance().getReference();

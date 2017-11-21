@@ -91,23 +91,23 @@ public class MenuLateralMaterial extends AppCompatActivity {
                                 startActivity(intentUsuarioCadastro);
                                 break;
 
-                            case 7:
+                            case 8:
                                 Intent intentAlunoConsulta = new Intent(MenuLateralMaterial.this, AlunosActivity.class);
                                 startActivity(intentAlunoConsulta);
                                 break;
-                            case 8:
+                            case 9:
                                 Intent intentDisciplinaConsulta = new Intent(MenuLateralMaterial.this, DisciplinaActivity.class);
                                 startActivity(intentDisciplinaConsulta);
                                 break;
-                            case 9:
+                            case 10:
                                 Intent intentTurmaConsulta = new Intent(MenuLateralMaterial.this, TurmasActivity.class);
                                 startActivity(intentTurmaConsulta);
                                 break;
-                            case 10:
+                            case 11:
                                 Intent intentUsuarioConsulta = new Intent(MenuLateralMaterial.this, UsuariosActivity.class);
                                 startActivity(intentUsuarioConsulta);
                                 break;
-                            case 13:
+                            case 12:
                                 autenticacao.signOut();
                                 Intent intent = new Intent(MenuLateralMaterial.this, Loginctivity.class);
                                 startActivity(intent);
