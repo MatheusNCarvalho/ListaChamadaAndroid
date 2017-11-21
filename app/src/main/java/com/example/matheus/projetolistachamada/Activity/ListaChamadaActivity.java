@@ -14,10 +14,12 @@ import android.widget.Toast;
 
 import com.example.matheus.projetolistachamada.Adapter.AlunoAdapter;
 import com.example.matheus.projetolistachamada.Adapter.ChamadaALunoAdapter;
+import com.example.matheus.projetolistachamada.DAO.AlunoDAO;
 import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
 import com.example.matheus.projetolistachamada.Entidades.Alunos;
 import com.example.matheus.projetolistachamada.Entidades.Chamadas;
 import com.example.matheus.projetolistachamada.R;
+import com.example.matheus.projetolistachamada.util.VerificaConexaoInternet;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +43,8 @@ public class ListaChamadaActivity extends AppCompatActivity {
 
     private Chamadas chamadas;
 
+    private AlunoDAO alunoDAO = new AlunoDAO(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +54,6 @@ public class ListaChamadaActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listChamada);
         registerForContextMenu(listView);
 
-        adapterAlunoChamada = new ChamadaALunoAdapter(this, alunos);
-        listView.setAdapter(adapterAlunoChamada);
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -61,25 +63,40 @@ public class ListaChamadaActivity extends AppCompatActivity {
             }
         });
 
-        firebase = ConfiguracaoFirebase.getFirebase().child("addalunos");
+        if (VerificaConexaoInternet.isOnline(this)) {
 
-        valueEventListenerAlunos = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                alunos.clear();
-                for(DataSnapshot dados : dataSnapshot.getChildren()){
-                    Alunos alunosNovo = dados.getValue(Alunos.class);
-                    alunos.add(alunosNovo);
+            firebase = ConfiguracaoFirebase.getFirebase().child("addalunos");
+
+            valueEventListenerAlunos = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    alunos.clear();
+                    for (DataSnapshot dados : dataSnapshot.getChildren()) {
+                        Alunos alunosNovo = dados.getValue(Alunos.class);
+                        alunos.add(alunosNovo);
+                    }
+
+                    adapterAlunoChamada = new ChamadaALunoAdapter(ListaChamadaActivity.this, alunos);
+                    listView.setAdapter(adapterAlunoChamada);
+                    adapterAlunoChamada.notifyDataSetChanged();
                 }
-                adapterAlunoChamada.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        };
+                }
+            };
 
+        } else {
+
+            alunos.clear();
+            alunos = alunoDAO.buscarTodos();
+            adapterAlunoChamada = new ArrayAdapter<Alunos>(ListaChamadaActivity.this, android.R.layout.simple_list_item_1, alunos);
+
+            listView.setAdapter(adapterAlunoChamada);
+
+
+        }
 
 
     }
@@ -109,8 +126,8 @@ public class ListaChamadaActivity extends AppCompatActivity {
 
     }
 
-    private boolean salvarFaltasChamada( String faltas){
-        try{
+    private boolean salvarFaltasChamada(String faltas) {
+        try {
             chamadas = new Chamadas();
             chamadas.setId(UUID.randomUUID().toString());
             chamadas.setNomeAluno(alunosChamada.getNome());
@@ -126,11 +143,12 @@ public class ListaChamadaActivity extends AppCompatActivity {
 
 
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
     private String getDateTime() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
@@ -140,13 +158,15 @@ public class ListaChamadaActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebase.addValueEventListener(valueEventListenerAlunos);
+        if(VerificaConexaoInternet.isOnline(this))
+            firebase.addValueEventListener(valueEventListenerAlunos);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        firebase.removeEventListener(valueEventListenerAlunos);
+        if(VerificaConexaoInternet.isOnline(this))
+            firebase.removeEventListener(valueEventListenerAlunos);
     }
 
 }
