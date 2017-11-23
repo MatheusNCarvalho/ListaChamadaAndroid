@@ -40,24 +40,22 @@ public class Loginctivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private Usuarios usuarios;
 
-    private ArrayList<Usuarios> usuariosArrayList;
+
 
     private TextView textView;
 
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference firebaseReference;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loginctivity);
-        usuariosArrayList = new ArrayList<>();
+
 
         autenticacao = ConfiguracaoFirebase.getAutenticacao();
 
         if (autenticacao.getCurrentUser() != null) {
-            pegarUsuario();
             abrirTelaPrincipal();
             finish();
         }
@@ -123,39 +121,7 @@ public class Loginctivity extends AppCompatActivity {
     }
 
 
-    private void pegarUsuario() {
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseReference = firebaseDatabase.getReference();
-        FirebaseUser usuario = FirebaseAuth.getInstance().getCurrentUser();
-        String email = usuario.getEmail();
 
-        Query query = firebaseReference.child("usuario").orderByChild("email").startAt(email).endAt(email + "\uf8ff");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                usuariosArrayList.clear();
-                for (DataSnapshot dados : dataSnapshot.getChildren()) {
-                    Usuarios usuariosList = dados.getValue(Usuarios.class);
-                    imprimir(usuariosList.getNome());
-                    usuariosArrayList.add(usuariosList);
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-    }
-
-    private void imprimir(String nome) {
-        Toast.makeText(Loginctivity.this, nome ,Toast.LENGTH_LONG).show();
-    }
 
 
 }
