@@ -35,7 +35,6 @@ public class MenuLateralMaterial extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        autenticacao = ConfiguracaoFirebase.getAutenticacao();
 
         //if you want to update the items at a later time it is recommended to keep it in a variable
         // trad: se você deseja atualizar os itens em um momento posterior, recomenda-se mantê-lo em uma variável
@@ -107,7 +106,8 @@ public class MenuLateralMaterial extends AppCompatActivity {
                                 Intent intentUsuarioConsulta = new Intent(MenuLateralMaterial.this, UsuariosActivity.class);
                                 startActivity(intentUsuarioConsulta);
                                 break;
-                            case 12:
+                            case 14:
+                                autenticacao = ConfiguracaoFirebase.getAutenticacao();
                                 autenticacao.signOut();
                                 Intent intent = new Intent(MenuLateralMaterial.this, Loginctivity.class);
                                 startActivity(intent);

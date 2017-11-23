@@ -20,6 +20,7 @@ import com.example.matheus.projetolistachamada.DAO.ConfiguracaoFirebase;
 import com.example.matheus.projetolistachamada.Entidades.Alunos;
 import com.example.matheus.projetolistachamada.Entidades.Chamadas;
 import com.example.matheus.projetolistachamada.Entidades.Disciplinas;
+import com.example.matheus.projetolistachamada.Entidades.Usuarios;
 import com.example.matheus.projetolistachamada.R;
 import com.example.matheus.projetolistachamada.util.VerificaConexaoInternet;
 import com.google.firebase.database.DataSnapshot;
@@ -53,6 +54,7 @@ public class ListaChamadaActivity extends AppCompatActivity {
     private Alunos alunosChamada;
 
     private Chamadas chamadas;
+    private Usuarios usuarios;
 
     private AlunoDAO alunoDAO = new AlunoDAO(this);
 
@@ -190,6 +192,9 @@ public class ListaChamadaActivity extends AppCompatActivity {
         });
 
         super.onCreateContextMenu(menu, v, menuInfo);
+
+    }
+    private void carregarUsuario(){
 
     }
 

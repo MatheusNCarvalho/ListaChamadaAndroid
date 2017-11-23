@@ -74,7 +74,7 @@ public class AlunosActivity extends AppCompatActivity {
                     }
 
 
-                    adapterAluno = new AlunoAdapter(AlunosActivity.this, alunos);
+                    adapterAluno = new ArrayAdapter<Alunos>(AlunosActivity.this, android.R.layout.simple_list_item_1,alunos);
                     listView.setAdapter(adapterAluno);
                     adapterAluno.notifyDataSetChanged();
 

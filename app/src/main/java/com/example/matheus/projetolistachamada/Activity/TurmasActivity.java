@@ -30,8 +30,11 @@ public class TurmasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turmas);
+
+        listView = (ListView) findViewById(R.id.listTurmas);
+
         turmas = new ArrayList<>();
-        adapterTurmas = new TurmaAdapter(this, turmas);
+        adapterTurmas = new ArrayAdapter<Turmas>(TurmasActivity.this,android.R.layout.simple_list_item_1, turmas);
         listView.setAdapter(adapterTurmas);
 
         firebase = ConfiguracaoFirebase.getFirebase().child("addturmas");

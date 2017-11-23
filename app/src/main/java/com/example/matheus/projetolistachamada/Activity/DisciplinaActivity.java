@@ -32,7 +32,7 @@ public class DisciplinaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disciplina);
         disciplinas = new ArrayList<>();
         listView = (ListView) findViewById(R.id.listProfessores);
-        adapterDisciplina = new DisciplinaAdapter(this, disciplinas);
+        adapterDisciplina = new ArrayAdapter<Disciplinas>(DisciplinaActivity.this, android.R.layout.simple_list_item_1,disciplinas);
         listView.setAdapter(adapterDisciplina);
 
         firebase = ConfiguracaoFirebase.getFirebase().child("adddisciplinas");

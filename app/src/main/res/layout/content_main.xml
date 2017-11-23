@@ -13,9 +13,11 @@
     tools:showIn="@layout/activity_menu_lateral_material">
 
     <TextView
+        android:id="@+id/tvMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView11" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp" />
 
 </RelativeLayout>
