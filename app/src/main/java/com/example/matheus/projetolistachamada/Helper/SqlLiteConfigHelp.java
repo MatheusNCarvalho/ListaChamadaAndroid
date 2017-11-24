@@ -61,6 +61,7 @@ public class SqlLiteConfigHelp extends SQLiteOpenHelper {
 
         scriptSQLCreate.add(" CREATE TABLE IF NOT EXISTS " + AlunoContrato.NOME_TABELA + " (" + AlunoContrato.COLUNA_ID + " TEXT, "
                 + AlunoContrato.COLUNA_NOME + " TEXT, "
+                + AlunoContrato.COLUNA_DISCIPLINA + " TEXT, "
                 + AlunoContrato.COLUNA_MATRICULA + " INTEGER, "
                 + AlunoContrato.COLUNA_TURMA + " TEXT ); ");
 

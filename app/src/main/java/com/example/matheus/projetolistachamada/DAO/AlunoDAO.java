@@ -40,6 +40,7 @@ public class AlunoDAO {
                 ContentValues valores = new ContentValues();
                 valores.put(AlunoContrato.COLUNA_NOME, alunosArrayList.get(i).getNome());
                 valores.put(AlunoContrato.COLUNA_MATRICULA, alunosArrayList.get(i).getMatricula());
+                valores.put(AlunoContrato.COLUNA_DISCIPLINA, alunosArrayList.get(i).getDisciplina());
                 valores.put(AlunoContrato.COLUNA_TURMA, alunosArrayList.get(i).getTurma());
 
                 linhas = db.insert(AlunoContrato.NOME_TABELA, null, valores);
@@ -72,6 +73,7 @@ public class AlunoDAO {
                 valores.put(AlunoContrato.COLUNA_ID, alunos.getId());
                 valores.put(AlunoContrato.COLUNA_NOME, alunos.getNome());
                 valores.put(AlunoContrato.COLUNA_MATRICULA, alunos.getMatricula());
+                valores.put(AlunoContrato.COLUNA_DISCIPLINA, alunos.getDisciplina());
                 valores.put(AlunoContrato.COLUNA_TURMA, alunos.getTurma());
 
                 linhas = db.insert(AlunoContrato.NOME_TABELA, null, valores);
@@ -146,7 +148,7 @@ public class AlunoDAO {
 //
     public ArrayList<Alunos> buscarTodos() {
         SQLiteDatabase db = this.sqlLiteConfig.getReadableDatabase();
-        String[] colunas = {AlunoContrato.COLUNA_ID, AlunoContrato.COLUNA_NOME, AlunoContrato.COLUNA_MATRICULA, AlunoContrato.COLUNA_TURMA};
+        String[] colunas = {AlunoContrato.COLUNA_ID, AlunoContrato.COLUNA_NOME, AlunoContrato.COLUNA_MATRICULA, AlunoContrato.COLUNA_TURMA, AlunoContrato.COLUNA_DISCIPLINA};
 
         Cursor cursor = db.query(false, AlunoContrato.NOME_TABELA, colunas, null, null, null, null, AlunoContrato.COLUNA_NOME + " ASC", null);
 
@@ -157,6 +159,7 @@ public class AlunoDAO {
             usuario.setId(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_ID)));
             usuario.setNome(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_NOME)));
             usuario.setMatricula(cursor.getInt(cursor.getColumnIndex(AlunoContrato.COLUNA_MATRICULA)));
+            usuario.setDisciplina(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_DISCIPLINA)));
             usuario.setTurma(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_TURMA)));
             contatos.add(usuario);
         }
@@ -165,31 +168,32 @@ public class AlunoDAO {
         return contatos;
 
     }
-//
-//    public ArrayList<Alunos> buscarPorNome(String nome){
-//        SQLiteDatabase db =  this.sqlLiteConfig.getReadableDatabase();
-//        String[] colunas = {AlunoContrato.COLUNA_ID, AlunoContrato.COLUNA_NOME, AlunoContrato.COLUNA_EMAIL, AlunoContrato.COLUNA_TELEFONE, AlunoContrato.COLUNA_CPF};
-//
-////        mDb.query(true, DATABASE_NAMES_TABLE, new String[] { KEY_ROWID,
-////                        KEY_NAME }, KEY_NAME + " LIKE ?",
-////                new String[] {"%"+ filter+ "%" }, null, null, null,
-////                null);
-//        Cursor cursor = db.query(false,AlunoContrato.NOME_TABELA,colunas,AlunoContrato.COLUNA_NOME + " LIKE ?",new String[]{"%"+nome+"%"},null,null,AlunoContrato.COLUNA_NOME+" ASC",null);
-//
-//        ArrayList<Alunos> contatos = new ArrayList<Alunos>();
-//        while(cursor.moveToNext()){
-//            Alunos usuario =  new Alunos();
-//
-//            usuario.setId(cursor.getInt(cursor.getColumnIndex(AlunoContrato.COLUNA_ID)));
-//            usuario.setCpf(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_CPF)));
-//            usuario.setNome(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_NOME)));
-//            usuario.setTelefone(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_TELEFONE)));
-//            usuario.setEmail(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_EMAIL)));
-//            contatos.add(usuario);
-//        }
-//
-//        cursor.close();
-//        return contatos;
-//
-//    }
+
+    public ArrayList<Alunos> buscarPorNome(String nome){
+        SQLiteDatabase db =  this.sqlLiteConfig.getReadableDatabase();
+        String[] colunas = {AlunoContrato.COLUNA_ID, AlunoContrato.COLUNA_NOME, AlunoContrato.COLUNA_MATRICULA, AlunoContrato.COLUNA_TURMA, AlunoContrato.COLUNA_DISCIPLINA};
+
+//        mDb.query(true, DATABASE_NAMES_TABLE, new String[] { KEY_ROWID,
+//                        KEY_NAME }, KEY_NAME + " LIKE ?",
+//                new String[] {"%"+ filter+ "%" }, null, null, null,
+//                null);
+        Cursor cursor = db.query(false,AlunoContrato.NOME_TABELA,colunas,AlunoContrato.COLUNA_NOME + " LIKE ?",new String[]{"%"+nome+"%"},null,null,AlunoContrato.COLUNA_NOME+" ASC",null);
+
+        ArrayList<Alunos> objetos = new ArrayList<Alunos>();
+        while(cursor.moveToNext()){
+            Alunos obj =  new Alunos();
+
+            obj.setId(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_ID)));
+            obj.setNome(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_NOME)));
+            obj.setMatricula(cursor.getInt(cursor.getColumnIndex(AlunoContrato.COLUNA_MATRICULA)));
+            obj.setDisciplina(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_DISCIPLINA)));
+            obj.setTurma(cursor.getString(cursor.getColumnIndex(AlunoContrato.COLUNA_TURMA)));
+
+            objetos.add(obj);
+        }
+
+        cursor.close();
+        return objetos;
+
+    }
 }

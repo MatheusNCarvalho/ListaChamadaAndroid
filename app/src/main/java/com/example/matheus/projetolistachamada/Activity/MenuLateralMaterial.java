@@ -128,6 +128,7 @@ public class MenuLateralMaterial extends AppCompatActivity {
                                 autenticacao.signOut();
                                 Intent intent = new Intent(MenuLateralMaterial.this, Loginctivity.class);
                                 startActivity(intent);
+                                break;
 
                         }
 

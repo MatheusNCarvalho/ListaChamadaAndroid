@@ -70,12 +70,29 @@ public class ListaChamadaActivity extends AppCompatActivity {
         etPesquisar = (EditText) findViewById(R.id.etPesquisar);
 
 
-
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 alunosChamada = adapterAlunoChamada.getItem(position);
                 return false;
+            }
+        });
+
+        etPesquisar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String nome = etPesquisar.getText().toString().trim();
+                buscarAluno(nome);
             }
         });
 
@@ -105,23 +122,7 @@ public class ListaChamadaActivity extends AppCompatActivity {
                 }
             });
 
-            etPesquisar.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    String nome = etPesquisar.getText().toString().trim();
-                    buscarAluno(nome );
-                }
-            });
 
         } else {
 
@@ -135,39 +136,52 @@ public class ListaChamadaActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     private void buscarAluno(String palavra) {
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseReference = firebaseDatabase.getReference();
-        Query query;
-        if(palavra.equals("")){
-            query = firebaseReference.child("addalunos").orderByChild("nome");
-        }else {
-            query = firebaseReference.child("addalunos").orderByChild("nome").startAt(palavra).endAt(palavra + "\uf8ff");
-        }
 
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                alunos.clear();
-                for (DataSnapshot dados : dataSnapshot.getChildren()) {
-                    Alunos alunosNovo = dados.getValue(Alunos.class);
-                    alunos.add(alunosNovo);
+        if (VerificaConexaoInternet.isOnline(this)) {
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseReference = firebaseDatabase.getReference();
+            Query query;
+            if (palavra.equals("")) {
+                query = firebaseReference.child("addalunos").orderByChild("nome");
+            } else {
+                query = firebaseReference.child("addalunos").orderByChild("nome").startAt(palavra).endAt(palavra + "\uf8ff");
+            }
+
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    alunos.clear();
+                    for (DataSnapshot dados : dataSnapshot.getChildren()) {
+                        Alunos alunosNovo = dados.getValue(Alunos.class);
+                        alunos.add(alunosNovo);
+                    }
+
+                    adapterAlunoChamada = new ArrayAdapter<Alunos>(ListaChamadaActivity.this,
+                            android.R.layout.simple_list_item_1, alunos);
+                    listView.setAdapter(adapterAlunoChamada);
+                    adapterAlunoChamada.notifyDataSetChanged();
                 }
 
-                adapterAlunoChamada = new ArrayAdapter<Alunos>(ListaChamadaActivity.this,
-                        android.R.layout.simple_list_item_1, alunos);
-                listView.setAdapter(adapterAlunoChamada);
-                adapterAlunoChamada.notifyDataSetChanged();
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+        } else {
+
+            alunos.clear();
+            alunos = alunoDAO.buscarPorNome(palavra);
+            adapterAlunoChamada = new ArrayAdapter<Alunos>(ListaChamadaActivity.this,
+                    android.R.layout.simple_list_item_1, alunos);
+            listView.setAdapter(adapterAlunoChamada);
+
+
+        }
+
     }
 
     @Override
@@ -227,20 +241,20 @@ public class ListaChamadaActivity extends AppCompatActivity {
         return dateFormat.format(date);
     }
 
-   /* @Override
-    protected void onStart() {
-        super.onStart();
-        if(VerificaConexaoInternet.isOnline(this))
-            firebaseReference.addValueEventListener(valueEventListenerAlunos);
-    }
+    /* @Override
+     protected void onStart() {
+         super.onStart();
+         if(VerificaConexaoInternet.isOnline(this))
+             firebaseReference.addValueEventListener(valueEventListenerAlunos);
+     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(VerificaConexaoInternet.isOnline(this))
-            firebaseReference.removeEventListener(valueEventListenerAlunos);
-    }
-*/
+     @Override
+     protected void onStop() {
+         super.onStop();
+         if(VerificaConexaoInternet.isOnline(this))
+             firebaseReference.removeEventListener(valueEventListenerAlunos);
+     }
+ */
     @Override
     protected void onPostResume() {
         super.onPostResume();

@@ -16,4 +16,6 @@ public class AlunoContrato implements BaseColumns {
     public static  final String COLUNA_NOME ="nome";
     public static  final String COLUNA_MATRICULA ="matricula";
     public static  final String COLUNA_TURMA ="turma";
+    public static  final String COLUNA_DISCIPLINA ="disciplina";
+
 }
